@@ -1,0 +1,235 @@
+---
+title: "Public Opnion Polls for the Romanian parliamentary elections in 2020"
+author: "Endre Borbáth"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: 
+  slidy_presentation
+---
+
+```{r, warning=FALSE, include=FALSE, message=FALSE, echo=FALSE}
+
+rm(list = ls())
+
+# To set up the data
+
+Sys.setlocale("LC_TIME", "C")
+
+library(readxl)
+library(dplyr)
+library(here)
+library(ggplot2)
+library(ggthemes)
+library(scales)
+library(lubridate)
+library(stringr)
+library(tidyr)
+library(plotly)
+library(zoo)
+library(imputeTS)
+library(xts)
+library(broom)
+
+
+theme_set(theme_fivethirtyeight() +  
+            theme(axis.title.x=element_blank(),
+                  # axis.text.x = element_text(angle = 45, hjust = 1),
+                  legend.title = element_blank(),
+                  legend.position="bottom", 
+                  legend.direction="horizontal",
+                  legend.margin=margin(t = 0, unit='cm'),
+                  legend.key.width = unit(1.5,"cm")))
+
+image_type <- ".jpeg"
+path <- paste0(here(), "/")
+dat <- read.csv(paste0(path, "ro_polls_2020.csv"))
+
+dat <- dat %>%
+  rename(`Polling company`=`ï..Polling.Firm`) %>% 
+  mutate(`Polling company`=factor(`Polling company`),
+         `Fieldwork.Start`=dmy(`Fieldwork.Start`),
+         `Fieldwork.End`=dmy(`Fieldwork.End`)) %>% 
+  filter(Scope=="National") %>% 
+  mutate_at(vars(Precision:Other), ~ifelse(.=="Not Available", NA, .)) %>% 
+  mutate_at(vars(Precision:Other), ~as.numeric(str_replace_all(., c("%" = "")))) %>% 
+  rowwise %>%
+  mutate(date=mean.Date(c(`Fieldwork.Start`, `Fieldwork.End`), na.rm = TRUE)) %>% 
+  select(`Polling company`, date, PSD:Other) %>% 
+  mutate_at(vars(USR, PLUS), ~ifelse(is.na(.), 0, .)) %>% 
+  mutate(USR.PLUS=ifelse(is.na(USR.PLUS), USR+PLUS, USR.PLUS)) %>% 
+  select(-USR, -PLUS) %>% 
+  mutate(numdata=as.numeric(date)) %>% 
+  arrange(date)
+
+colnames(dat)[colnames(dat)=="USR.PLUS"] <- "USR-PLUS"
+
+colnames(dat)
+
+# To fill in the missings for the small parties for the plot
+
+UDMR.imp <- with(dat, zoo(UDMR, order.by = date))
+UDMR.imp <- na.ma(UDMR.imp, k = 4, weighting = "linear")
+
+PMP.imp <- with(dat, zoo(PMP, order.by = date))
+PMP.imp <- na.ma(PMP.imp, k = 4, weighting = "linear")
+
+ALDE.imp <- with(dat, zoo(ALDE, order.by = date))
+ALDE.imp <- na.ma(ALDE.imp, k = 4, weighting = "linear")
+
+PRO.imp <- with(dat, zoo(PRO, order.by = date))
+PRO.imp <- na.ma(PRO.imp, k = 4, weighting = "linear")
+
+dat <- cbind(dat, as.data.frame(UDMR.imp)[1])
+dat <- cbind(dat, as.data.frame(PMP.imp)[1])
+dat <- cbind(dat, as.data.frame(ALDE.imp)[1])
+dat <- cbind(dat, as.data.frame(PRO.imp)[1])
+
+dat <- dat %>% 
+mutate(imptd_UDMR=ifelse(is.na(UDMR)& !is.na(UDMR.imp), 1, 0),
+       imptd_PMP=ifelse(is.na(PMP)& !is.na(PMP.imp), 1, 0),
+       imptd_ALDE=ifelse(is.na(ALDE)& !is.na(ALDE.imp), 1, 0),
+       imptd_PRO=ifelse(is.na(PRO)& !is.na(PRO.imp), 1, 0)) %>% 
+select(-UDMR, -PMP, -ALDE, -PRO) %>% 
+rename(UDMR=UDMR.imp,
+       PMP=PMP.imp,
+       ALDE=ALDE.imp,
+       PRO=PRO.imp) %>% 
+mutate(imptd_PRO=ifelse(date<=ymd("2018-05-02"), 1, imptd_PRO),
+       PRO=ifelse(date<=ymd("2018-05-02"), 0, PRO))
+
+long <- dat %>% 
+  select(-starts_with("imptd_"), -numdata) %>% 
+  pivot_longer(cols=PSD:PRO, names_to="parties", values_to="percent") %>% 
+  arrange(date)
+
+```
+
+## Interactive
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+plot_ly(data=dat, x=~date) %>% 
+  add_markers(y = ~PNL, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#cc9900"), name="PNL") %>%
+  add_lines(y = ~fitted(loess(PNL~numdata)),
+            line = list(color = '#cc9900'),
+            name = "PNL", showlegend = TRUE) %>%
+  add_markers(y = ~PSD, 
+              text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#EC1C24"), name="PSD") %>% 
+  add_lines(y = ~fitted(loess(PSD~numdata)),
+            line = list(color = '#EC1C24'),
+            name = "PSD", showlegend = TRUE, text = ~`Polling company`) %>% 
+  add_markers(y = ~`USR-PLUS`, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#6843d1"), name="USR-PLUS") %>%
+  add_lines(y = ~fitted(loess(`USR-PLUS`~numdata)),
+            line = list(color = '#a593d8'),
+            name = "USR-PLUS", showlegend = TRUE) %>%
+  add_markers(y = ~PRO, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="black"), name="Pro RO") %>%
+  add_lines(y = ~ifelse(fitted(loess(PRO~numdata))<0, 0, fitted(loess(PRO~numdata))),
+            line = list(color = 'black'),
+            name = "Pro RO", showlegend = TRUE) %>%
+  add_markers(y = ~PMP, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#007BC8"), name="PMP") %>%
+  add_lines(y = ~fitted(loess(PMP~numdata)),
+            line = list(color = '#007BC8'),
+            name = "PMP", showlegend = TRUE) %>%
+  add_markers(y = ~ALDE, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#D1439D"), name="ALDE") %>%
+  add_lines(y = ~fitted(loess(ALDE~numdata)),
+            line = list(color = '#D1439D'),
+            name = "ALDE", showlegend = TRUE) %>%
+  add_markers(y = ~UDMR, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+              marker=list(color="#2E8348"), name="UDMR") %>%
+  add_lines(y = ~fitted(loess(UDMR~numdata)),
+            line = list(color = '#2E8348'),
+            name = "UDMR", showlegend = TRUE) %>%
+  layout(yaxis = list(title = "Parties' popularity in pp."),
+         xaxis = list(title = "<sub>Endre Borbáth: <a href='http://eborbath.github.io/polls/'>eborbath.github.io/polls/</a> (c)</sub>"))
+
+# api_create(p, filename = paste0(path, "plotly_all"))
+
+# autosize = F, width = 800, height = 600
+
+
+# p <- ggplot(dat, aes(x=date, y=percent, color=parties)) +
+#   geom_point(aes(shape=`Polling company`)) + #
+#   geom_smooth(method = loess, se = FALSE) +
+#   scale_color_manual("",   limits=c("PNL", "PSD", "USR-PLUS", "PRO", "ALDE", "PMP", "UDMR"),
+#                       values = c("#cc9900", "#C1333C", "#FF4F01", "black", "#075697", "#A7CF35", "#e5322d"))
+#   # scale_x_date(labels = date_format("%b-%d"))
+# ggplotly(p)
+
+```
+
+## GGPLOT
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+
+# To make it to longer
+
+long <- long %>% 
+  filter(parties!="Other") %>% 
+  mutate(parties=ifelse(parties=="PRO", "Pro Romania", parties))
+
+
+ggplot(long, aes(x=date, y=percent, color=parties)) +
+  geom_point(alpha = 1/3) +
+  geom_smooth(method="loess", se=FALSE) +
+  scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
+                     values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8","#D1439D", "#2E8348")) +
+  ylab("Parties' popularity in pp.") + xlab("") +
+  theme_bw() +
+  scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
+  scale_y_continuous(breaks = round(seq(min(long$percent), max(long$percent), by = 10),1)) +
+  theme(legend.title=element_blank(), legend.position="bottom") + 
+  expand_limits(y = 0)
+
+```
+
+## Potential winners
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+
+# To make it to longer
+
+to_plot <- long %>% 
+  filter(parties %in% c("PNL", "PSD", "USR-PLUS"))
+
+ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
+  geom_point(alpha = 1/3) +
+  geom_smooth(method="loess", se=FALSE) +
+  scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS"),
+                     values = c("#cc9900", "#EC1C24", "#6843d1")) +
+  ylab("Parties' popularity in pp.") + xlab("") +
+  theme_bw() +
+  scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
+  scale_y_continuous(breaks = round(seq(min(to_plot$percent), max(to_plot$percent), by = 10),1)) +
+  theme(legend.title=element_blank(), legend.position="bottom") + 
+  expand_limits(y = 0)
+
+```
+
+## Small parties
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+
+# To make it to longer
+
+to_plot <- long %>% 
+  filter(parties %in% c("Pro Romania", "PMP", "ALDE", "UDMR"))
+
+ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
+  geom_point(alpha = 1/3) +
+  geom_smooth(method="loess", se=FALSE) +
+  geom_hline(yintercept = 5, linetype="dotted") +
+  scale_color_manual("",breaks=c("Pro Romania", "PMP", "ALDE", "UDMR"),
+                     values = c("black", "#007BC8","#D1439D", "#2E8348")) +
+  ylab("Parties' popularity in pp.") + xlab("") +
+  theme_bw() +
+  scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
+  scale_y_continuous(breaks = round(seq(min(to_plot$percent), max(to_plot$percent), by = 2),1)) +
+  theme(legend.title=element_blank(), legend.position="bottom") + 
+  expand_limits(y = 0)
+
+
+```
