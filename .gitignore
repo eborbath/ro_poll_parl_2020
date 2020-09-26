@@ -30,6 +30,9 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
+/lib/
+plotly_2020.html
+ro_polls_2020.xlsx
 
 # Temporary files created by R markdown
 *.utf8.md

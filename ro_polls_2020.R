@@ -1,13 +1,3 @@
----
-title: "Public Opnion Polls for the Romanian parliamentary elections in 2020"
-author: "Endre Borbáth"
-date: "`r format(Sys.time(), '%d %B, %Y')`"
-output: 
-  slidy_presentation
----
-
-```{r, warning=FALSE, include=FALSE, message=FALSE, echo=FALSE}
-
 rm(list = ls())
 
 # To set up the data
@@ -16,7 +6,6 @@ Sys.setlocale("LC_TIME", "C")
 
 library(readxl)
 library(dplyr)
-library(here)
 library(ggplot2)
 library(ggthemes)
 library(scales)
@@ -28,6 +17,7 @@ library(zoo)
 library(imputeTS)
 library(xts)
 library(broom)
+library(htmlwidgets)
 
 
 theme_set(theme_fivethirtyeight() +  
@@ -40,8 +30,14 @@ theme_set(theme_fivethirtyeight() +
                   legend.key.width = unit(1.5,"cm")))
 
 image_type <- ".jpeg"
-path <- paste0(here(), "/")
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+path <- paste0(getwd(), "//")
+
+dat <- read_xlsx(paste0(path, "ro_polls_2020.xlsx"))
+write.csv(dat, paste0(path, "ro_polls_2020.csv"))
+
 dat <- read.csv(paste0(path, "ro_polls_2020.csv"))
+
 
 dat <- dat %>%
   rename(`Polling company`=`ï..Polling.Firm`) %>% 
@@ -97,16 +93,19 @@ mutate(imptd_PRO=ifelse(date<=ymd("2018-05-02"), 1, imptd_PRO),
        PRO=ifelse(date<=ymd("2018-05-02"), 0, PRO))
 
 long <- dat %>% 
+  mutate(UDMR = ifelse(imptd_UDMR==1, NA, UDMR),
+         PMP = ifelse(imptd_PMP==1, NA, PMP),
+         ALDE = ifelse(imptd_ALDE==1, NA, ALDE),
+         PRO = ifelse(imptd_PRO==1, NA, PRO)) %>% 
   select(-starts_with("imptd_"), -numdata) %>% 
   pivot_longer(cols=PSD:PRO, names_to="parties", values_to="percent") %>% 
-  arrange(date)
+  filter(parties!="Other") %>% 
+  mutate(parties=ifelse(parties=="PRO", "Pro Romania", parties)) %>% 
+  arrange(date) 
 
-```
+# Interactive plot
 
-## Interactive
-
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-plot_ly(data=dat, x=~date) %>% 
+p <- plot_ly(data=dat, x=~date) %>% 
   add_markers(y = ~PNL, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
               marker=list(color="#cc9900"), name="PNL") %>%
   add_lines(y = ~fitted(loess(PNL~numdata)),
@@ -124,10 +123,10 @@ plot_ly(data=dat, x=~date) %>%
             line = list(color = '#a593d8'),
             name = "USR-PLUS", showlegend = TRUE) %>%
   add_markers(y = ~PRO, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
-              marker=list(color="black"), name="Pro RO") %>%
+              marker=list(color="black"), name="Pro Romania") %>%
   add_lines(y = ~ifelse(fitted(loess(PRO~numdata))<0, 0, fitted(loess(PRO~numdata))),
             line = list(color = 'black'),
-            name = "Pro RO", showlegend = TRUE) %>%
+            name = "Pro Romania", showlegend = TRUE) %>%
   add_markers(y = ~PMP, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
               marker=list(color="#007BC8"), name="PMP") %>%
   add_lines(y = ~fitted(loess(PMP~numdata)),
@@ -143,36 +142,18 @@ plot_ly(data=dat, x=~date) %>%
   add_lines(y = ~fitted(loess(UDMR~numdata)),
             line = list(color = '#2E8348'),
             name = "UDMR", showlegend = TRUE) %>%
-  layout(yaxis = list(title = "Parties' popularity in pp."),
-         xaxis = list(title = "<sub>Endre Borbáth: <a href='http://eborbath.github.io/polls/'>eborbath.github.io/polls/</a> (c)</sub>"))
+  layout(legend = list(orientation = 'h', xanchor = 'left'),
+         yaxis = list(title = "Parties' popularity in pp."),
+         xaxis = list(title = ""))
 
-# api_create(p, filename = paste0(path, "plotly_all"))
+saveWidget(p, "plotly_2020.html", selfcontained = F, libdir = "lib")
 
 # autosize = F, width = 800, height = 600
 
 
-# p <- ggplot(dat, aes(x=date, y=percent, color=parties)) +
-#   geom_point(aes(shape=`Polling company`)) + #
-#   geom_smooth(method = loess, se = FALSE) +
-#   scale_color_manual("",   limits=c("PNL", "PSD", "USR-PLUS", "PRO", "ALDE", "PMP", "UDMR"),
-#                       values = c("#cc9900", "#C1333C", "#FF4F01", "black", "#075697", "#A7CF35", "#e5322d"))
-#   # scale_x_date(labels = date_format("%b-%d"))
-# ggplotly(p)
+## GGPLOT overall
 
-```
-
-## GGPLOT
-
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-
-# To make it to longer
-
-long <- long %>% 
-  filter(parties!="Other") %>% 
-  mutate(parties=ifelse(parties=="PRO", "Pro Romania", parties))
-
-
-ggplot(long, aes(x=date, y=percent, color=parties)) +
+p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
   scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
@@ -180,45 +161,45 @@ ggplot(long, aes(x=date, y=percent, color=parties)) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
   scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
-  scale_y_continuous(breaks = round(seq(min(long$percent), max(long$percent), by = 10),1)) +
   theme(legend.title=element_blank(), legend.position="bottom") + 
+  guides(color=guide_legend(keywidth = 3, keyheight = 1)) +
   expand_limits(y = 0)
 
-```
+ggsave(plot=p,
+       filename = "overall.png",
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)
 
-## Potential winners
-
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-
-# To make it to longer
+## Potential winners since the presidential elections
 
 to_plot <- long %>% 
+  filter(date>ymd("2019-11-24")) %>% 
   filter(parties %in% c("PNL", "PSD", "USR-PLUS"))
 
-ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
+p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
   scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS"),
                      values = c("#cc9900", "#EC1C24", "#6843d1")) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
-  scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
-  scale_y_continuous(breaks = round(seq(min(to_plot$percent), max(to_plot$percent), by = 10),1)) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b-%y") +
   theme(legend.title=element_blank(), legend.position="bottom") + 
+  guides(color=guide_legend(keywidth = 3, keyheight = 1)) +
   expand_limits(y = 0)
 
-```
+ggsave(plot=p,
+       filename = "winners.png",
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)
 
 ## Small parties
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
-
-# To make it to longer
-
 to_plot <- long %>% 
-  filter(parties %in% c("Pro Romania", "PMP", "ALDE", "UDMR"))
+  filter(date>ymd("2019-11-24")) %>% 
+  filter(parties %in% c("Pro Romania", "PMP", "ALDE", "UDMR")) 
 
-ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
+p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
   geom_hline(yintercept = 5, linetype="dotted") +
@@ -226,10 +207,12 @@ ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
                      values = c("black", "#007BC8","#D1439D", "#2E8348")) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
-  scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
-  scale_y_continuous(breaks = round(seq(min(to_plot$percent), max(to_plot$percent), by = 2),1)) +
+  scale_x_date(date_breaks = "1 month", date_labels =  "%b-%y") +
   theme(legend.title=element_blank(), legend.position="bottom") + 
+  guides(color=guide_legend(keywidth = 3, keyheight = 1)) +
   expand_limits(y = 0)
 
-
-```
+ggsave(plot=p,
+       filename = "smaller.png",
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)

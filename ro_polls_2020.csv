@@ -1,93 +1,94 @@
-﻿Polling Firm,Commissioners,Fieldwork Start,Fieldwork End,Scope,Sample Size,Sample Size Qualification,Participation,Precision,PSD,ALDE,USR,PNL,UDMR,PMP,PLUS,PRO,USR-PLUS,Other
-IMAS,Europa FM,06/08/2020,26/08/2020,National,1010,Provided,Not Available,0.10%,20.80%,2.40%,Not Available,33.60%,5.70%,4.10%,Not Available,10.60%,18.30%,4.60%
-CURS,,29/07/2020,05/08/2020,National,1100,Provided,Not Available,1%,28%,5%,Not Available,31%,4%,5%,Not Available,7%,14%,6%
-IMAS,Europa FM,10/07/2020,29/07/2020,National,1010,Provided,Not Available,0.10%,23.40%,3.40%,Not Available,33.40%,5.60%,3.90%,Not Available,9.70%,17.20%,3.40%
-CURS,STIRIPESURSE.RO,19/06/2020,30/06/2020,National,1100,Provided,Not Available,1%,28%,5%,Not Available,32%,5%,5%,Not Available,7%,16%,2%
-IMAS,Europa FM,05/06/2020,27/06/2020,National,1010,Provided,Not Available,0.10%,21.90%,4.70%,18.10%,33%,3.70%,11.20%,3.40%,4%,Not Available,11.10%
-Avangarde,,15/05/2020,26/05/2020,National,1000,Provided,Not Available,1%,29%,4%,Not Available,35%,5%,4%,Not Available,6%,13%,4%
-IMAS,Europa FM,08/05/2020,27/05/2020,National,1010,Provided,Not Available,0.10%,23%,4.20%,11.60%,32.60%,5.10%,3.70%,5.10%,11.20%,Not Available,3.10%
-INSCOP,,15/05/2020,20/05/2020,National,1132,Provided,Not Available,0.10%,17.50%,3.50%,10.20%,25.50%,3.60%,6.30%,6.00%,0.70%,Not Available,7.00%
-PSD,,21/05/2020,21/05/2020,National,Not Available,N/A,Not Available,1%,27%,4%,16%,35%,4%,4%,2%,8%,Not Available,Not Available
-BCS,,01/05/2020,07/05/2020,National,1545,Provided,Not Available,0.10%,22.50%,6.50%,22.00%,33.00%,1.40%,5.10%,5.30%,4.30%,Not Available,10.50%
-IMAS,Europa FM,06/04/2020,24/04/2020,National,1010,Provided,Not Available,0.10%,24.80%,4.40%,10.80%,33.00%,5.50%,3.40%,5.10%,8.20%,Not Available,4.80%
-Avangarde,STIRIPESURSE.RO,06/04/2020,12/04/2020,National,915,Provided,Not Available,1%,28%,4%,Not Available,37%,4%,3%,Not Available,5%,15%,1%
-BCS,,11/04/2020,15/04/2020,National,1008,Provided,Not Available,0.10%,22.90%,2.50%,Not Available,31.30%,3.60%,6.70%,Not Available,8.80%,20%,1%
-IMAS,Europa FM,05/03/2020,26/03/2020,National,1010,Provided,Not Available,0.10%,23.90%,3.50%,12.50%,36.70%,4.50%,3.50%,6.50%,5.80%,Not Available,3.00%
-IMAS,Europa FM,11/02/2020,28/02/2020,National,1010,Provided,Not Available,0.10%,25.80%,4.30%,10.00%,40.70%,4.40%,3.60%,3.50%,4.60%,Not Available,3.10%
-CURS,STIRIPESURSE.RO,20/01/2020,30/01/2020,National,1229,Provided,Not Available,1%,26%,4%,Not Available,37%,5%,4%,Not Available,6%,14%,1%
-IMAS,Europa FM,13/01/2020,31/01/2020,National,1011,Provided,Not Available,0.10%,20.60%,3.20%,12.30%,47.40%,4.70%,1.80%,3.40%,3.80%,Not Available,2.70%
-Sociopol,,13/12/2019,18/12/2019,National,1000,Provided,Not Available,1%,23%,2%,13%,47%,4%,3%,Not Available,5%,Not Available,3%
-IMAS,Europa FM,04/12/2019,18/12/2019,National,1011,Provided,Not Available,0.10%,18.50%,3.50%,11.50%,45.00%,5.00%,3.00%,3.50%,6.40%,Not Available,4.60%
-CURS,STIRIPESURSE.RO,12/12/2019,17/12/2019,National,1067,Provided,Not Available,1%,31%,4%,Not Available,35%,4%,5%,Not Available,6%,14%,1%
-IMAS,Europa FM,11/11/2019,27/11/2019,National,1011,Provided,Not Available,0.10%,21.30%,3.30%,12.60%,39.00%,4.20%,2.90%,5.60%,6.40%,Not Available,4.70%
-USR,,25/10/2019,03/11/2019,National,1225,Provided,Not Available,0.10%,24.00%,Not Available,Not Available,38.20%,4.50%,4.30%,Not Available,4.80%,20%,4.20%
-IMAS,Europa FM,08/10/2019,28/10/2019,National,1010,Provided,Not Available,0.10%,21.20%,4.30%,16.40%,29.60%,5.50%,3.40%,4.50%,10.70%,Not Available,4.40%
-USR,,15/10/2019,23/10/2019,National,1225,Estimated/Assumed,Not Available,0.10%,24.90%,4.00%,19.90%,36.80%,Not Available,6.50%,4.00%,3.90%,Not Available,11.90%
-BCS,,12/10/2019,19/10/2019,National,1117,Provided,Not Available,0.10%,23.80%,5.60%,16.80%,36.30%,3.30%,5.60%,5.70%,2.90%,Not Available,12.50%
-IMAS,Europa FM,05/09/2019,28/09/2019,National,1010,Provided,Not Available,0.10%,20.50%,6.40%,18.80%,29.20%,5.50%,3.40%,5.40%,9.50%,Not Available,Not Available
-USR,,03/09/2019,24/09/2019,National,1500,Provided,Not Available,0.10%,25.30%,3.20%,21.20%,36.80%,Not Available,5.60%,2.90%,5.20%,Not Available,11.50%
-Socio-Data,,16/09/2019,20/09/2019,National,1070,Provided,Not Available,1%,25%,4%,Not Available,28%,5%,5%,Not Available,9%,22%,2%
-Socio-Data,,09/09/2019,13/09/2019,National,1070,Provided,Not Available,1%,26%,5%,Not Available,32%,4%,3%,Not Available,6%,22%,2%
-Socio-Data,,02/09/2019,06/09/2019,National,1070,Provided,Not Available,1%,24%,6%,Not Available,32%,4%,5%,Not Available,9%,21%,2%
-Sociopol,,19/08/2019,31/08/2019,National,1001,Provided,Not Available,1%,20%,5%,Not Available,35%,3%,5%,Not Available,11%,16%,5%
-Socio-Data,,26/08/2019,30/08/2019,National,1070,Provided,Not Available,1%,22%,6%,Not Available,26%,4%,5%,Not Available,10%,24%,3%
-Verifield,,26/08/2019,30/08/2019,National,1000,Provided,Not Available,1%,25%,6%,Not Available,28%,4%,2%,Not Available,8%,23%,4%
-IMAS,Europa FM,05/08/2019,28/08/2019,National,1010,Provided,Not Available,0.10%,17.90%,7.40%,19.80%,28.40%,4.60%,2.90%,5.50%,8.70%,Not Available,4.80%
-CURS,STIRIPESURSE.RO,19/07/2019,05/08/2019,National,1600,Provided,Not Available,1%,24%,8%,Not Available,31%,4%,5%,Not Available,7%,20%,1%
-IMAS,Europa FM,15/07/2019,02/08/2019,National,1010,Provided,Not Available,0.10%,19.40%,7.30%,21.40%,25.50%,4.20%,2.90%,6%,9%,Not Available,4.20%
-BCS,,17/07/2019,23/07/2019,National,1128,Provided,Not Available,,25.40%,5.70%,Not Available,34.20%,4.60%,5.50%,Not Available,5%,18.60%,1.10%
-CURS,STIRIPESURSE.RO,28/06/2019,08/07/2019,National,1067,Provided,Not Available,1%,26%,5%,Not Available,29%,4%,4%,Not Available,8%,22%,2%
-BCS,,07/07/2019,23/07/2019,National,1128,Provided,Not Available,0.10%,25.40%,5.50%,18.60%,34.20%,5.70%,4.80%,4.60%,1.10%,Not Available,8.80%
-IMAS,Europa FM,07/06/2019,26/06/2019,National,1010,Provided,Not Available,0.10%,18.90%,8.50%,17.60%,27.50%,2.50%,3.70%,7.60%,9.80%,Not Available,3.80%
-Novel,PNL,14/05/2019,19/05/2019,European,1219,Provided,Not Available,0.10%,27.80%,7.90%,14.80%,28.10%,5.00%,6.70%,Not Available,7.80%,Not Available,1.10%
-IMAS,Europa FM,02/05/2019,20/05/2019,European,1010,Provided,Not Available,0.10%,21.10%,9.80%,19.60%,28.50%,3.80%,6.20%,Not Available,9.90%,Not Available,1.10%
-IMAS,Europa FM,02/05/2019,20/05/2019,National,1010,Provided,Not Available,0.10%,21.40%,10.20%,14.40%,29.30%,3.30%,5.50%,6.30%,8.00%,Not Available,1.70%
-INSCOP,Konrad-Adenauer-Stiftung,12/04/2019,03/05/2019,European,1050,Provided,Not Available,0.10%,26%,9%,17%,28%,5%,4.40%,Not Available,8.30%,Not Available,4%
-CURS,STIRIPESURSE.RO,05/04/2019,28/04/2019,European,1500,Provided,Not Available,1%,32%,10%,Not Available,25%,5%,5%,Not Available,9%,12%,2%
-IMAS,Europa FM,12/04/2019,25/04/2019,European,1010,Provided,Not Available,0.10%,22%,12.20%,16.40%,25.60%,5.60%,5.60%,Not Available,11.70%,Not Available,1.10%
-IMAS,Europa FM,18/03/2019,03/04/2019,European,1010,Provided,Not Available,0.10%,21.20%,12.70%,17.70%,25.20%,5.10%,4.70%,Not Available,11.20%,Not Available,1.90%
-CURS,STIRIPESURSE.RO,12/03/2019,25/03/2019,European,1067,Provided,Not Available,1%,31%,10%,Not Available,23%,5%,6%,Not Available,8%,13%,4%
-BCS,PSnews.ro,15/03/2019,20/03/2019,European,1144,Provided,Not Available,0.10%,26.50%,8.10%,10.80%,29.80%,4.40%,6.20%,Not Available,10.20%,Not Available,4%
-INSCOP,Konrad-Adenauer-Stiftung,05/03/2019,13/03/2019,European,1053,Provided,Not Available,0.10%,26.90%,9.30%,15.30%,26.30%,5%,4.40%,Not Available,9.10%,Not Available,3.70%
-CURS,STIRIPESURSE.RO,13/02/2019,28/02/2019,European,1500,Provided,Not Available,1%,31%,12%,12%,23%,5%,5%,Not Available,10%,Not Available,1%
-IMAS,Europa FM,01/02/2019,21/02/2019,European,1010,Provided,Not Available,0.10%,22.70%,12.50%,17.90%,22.60%,4.70%,4.40%,Not Available,13.40%,Not Available,1.80%
-IMAS,Europa FM,01/02/2019,21/02/2019,National,1010,Provided,Not Available,0.10%,23.40%,12.40%,10.50%,23.60%,5.00%,3.50%,8.00%,11.10%,Not Available,2.50%
-CURS,STIRIPESURSE.RO,21/01/2019,06/02/2019,European,1067,Provided,Not Available,1%,32%,9%,8%,22%,5%,5%,5%,9%,Not Available,5%
-CURS,STIRIPESURSE.RO,21/01/2019,06/02/2019,National,1067,Provided,Not Available,1%,31%,10%,9%,21%,5%,5%,4%,8%,Not Available,7%
-INSCOP,Konrad-Adenauer-Stiftung,21/01/2019,05/02/2019,European,1080,Provided,Not Available,0.10%,27.80%,9.20%,10.00%,26.70%,5.10%,4.40%,7.00%,6.60%,Not Available,3.20%
-Sociopol,,28/01/2019,04/02/2019,National,1003,Provided,Not Available,1%,33%,11%,9%,20%,4%,2%,6%,8%,Not Available,7%
-PNL,,01/01/2019,31/01/2019,National,26000,Provided,Not Available,0.10%,30.20%,11.60%,10.20%,27.00%,5.00%,4.20%,5.00%,5.50%,Not Available,1.30%
-IMAS,Europa FM,11/01/2019,30/01/2019,European,1011,Provided,Not Available,0.10%,24.60%,12.90%,13.10%,23.30%,5.60%,2.50%,7.30%,9.00%,Not Available,1.60%
-IMAS,Europa FM,11/01/2019,30/01/2019,National,1011,Provided,Not Available,0.10%,25.30%,13.40%,11.00%,22.10%,4.40%,3.80%,8.90%,8.10%,Not Available,3.20%
-BCS,PSnews.ro,12/01/2019,20/01/2019,European,Not Available,N/A,Not Available,0.10%,23.00%,8.10%,6.50%,23.70%,4.80%,9.30%,8.10%,10.70%,Not Available,5.80%
-IMAS,Europa FM,04/12/2018,20/12/2018,National,1010,Provided,Not Available,0.10%,25.20%,9.60%,11.50%,26.10%,4.60%,2.50%,8.10%,6.20%,Not Available,6.20%
-CURS,STIRIPESURSE.RO,24/11/2018,09/12/2018,European,1067,Provided,Not Available,1%,33%,9%,7%,20%,6%,5%,5%,9%,Not Available,6%
-CURS,STIRIPESURSE.RO,24/11/2018,09/12/2018,National,1067,Provided,Not Available,1%,33%,9%,7%,20%,6%,5%,5%,9%,Not Available,6%
-IMAS,Europa FM,01/11/2018,30/11/2018,National,1010,Provided,Not Available,0.10%,24.90%,11.70%,14.80%,23.30%,5.80%,2.10%,8.20%,Not Available,Not Available,9.20%
-CURS,STIRIPESURSE.RO,26/10/2018,12/11/2018,European,1067,Provided,Not Available,1%,38%,15%,8%,15%,Not Available,3%,7%,9%,Not Available,5%
-IMAS,Europa FM,01/10/2018,31/10/2018,National,1000,Estimated/Assumed,Not Available,0.10%,27.60%,10.60%,13.10%,21.90%,4.70%,4.10%,9.60%,Not Available,Not Available,8.40%
-Sociopol,,03/10/2018,04/10/2018,National,873,Provided,Not Available,1%,38%,10%,6%,23%,4%,1%,5%,5%,Not Available,8%
-CURS,STIRIPESURSE.RO,20/09/2018,01/10/2018,National,1067,Provided,Not Available,1%,37%,9%,8%,22%,5%,5%,5%,6%,Not Available,3%
-IMAS,Europa FM,01/09/2018,30/09/2018,National,1000,Estimated/Assumed,Not Available,0.10%,28.10%,11.40%,9.50%,27.10%,5.60%,2.70%,10.10%,Not Available,Not Available,5.50%
-Sociopol,,22/09/2018,27/09/2018,National,1004,Provided,Not Available,1%,36%,11%,4%,20%,4%,2%,8%,7%,Not Available,8%
-Sociopol,,07/08/2018,20/08/2018,National,1005,Provided,Not Available,1%,35%,10%,8%,19%,4%,3%,13%,3%,Not Available,5%
-IRI,,01/07/2018,31/07/2018,National,Not Available,N/A,Not Available,1%,26%,6%,5%,24%,1%,3%,7%,Not Available,Not Available,28%
-CURS,STIRIPESURSE.RO,23/06/2018,01/07/2018,National,1067,Provided,Not Available,1%,37%,8%,7%,24%,5%,4%,5%,5%,Not Available,4%
-IMAS,,01/06/2018,30/06/2018,National,1200,Provided,Not Available,0.10%,28.40%,8.60%,11.30%,29.20%,5.00%,2.80%,8.00%,Not Available,Not Available,6.70%
-Sociopol,RomÃ¢nia TV,22/06/2018,26/06/2018,National,917,Provided,Not Available,1%,41%,12%,7%,20%,4%,1%,7%,5%,Not Available,3%
-Sociopol,RomÃ¢nia TV,28/05/2018,08/06/2018,National,1003,Provided,Not Available,1%,40%,7%,9%,18%,5%,1%,8%,3%,Not Available,9%
-CURS,STIRIPESURSE.RO,27/04/2018,08/05/2018,National,1067,Provided,Not Available,1%,39%,8%,6%,25%,6%,5%,3%,3%,Not Available,5%
-CURS,STIRIPESURSE.RO,01/03/2018,31/03/2018,National,1067,Estimated/Assumed,Not Available,1%,39%,12%,7%,27%,Not Available,5%,Not Available,Not Available,Not Available,10%
-Sociopol,STIRIPESURSE.RO,27/02/2018,05/03/2018,National,1000,Provided,Not Available,1%,34%,5%,12%,33%,6%,5%,Not Available,Not Available,Not Available,5%
-IMAS,,01/02/2018,28/02/2018,National,1010,Provided,Not Available,0.10%,28.60%,10.60%,11.20%,29.40%,6.00%,4.60%,Not Available,Not Available,Not Available,9.60%
-CURS,STIRIPESURSE.RO,03/01/2018,10/01/2018,National,1068,Provided,Not Available,1%,42%,9%,5%,27%,6%,5%,2%,2%,Not Available,6%
-Avangarde,,24/11/2017,07/12/2017,National,700,Provided,Not Available,1%,46%,13%,5%,23%,5%,4%,Not Available,Not Available,Not Available,4%
-CURS,STIRIPESURSE.RO,01/11/2017,30/11/2017,National,1067,Provided,Not Available,1%,43%,9%,5%,27%,6%,6%,Not Available,Not Available,Not Available,4%
-Sociopol,,22/09/2017,05/10/2017,National,873,Estimated/Assumed,Not Available,1%,61%,4%,2%,24%,3%,3%,Not Available,Not Available,Not Available,3%
-IMAS,,01/09/2017,30/09/2017,National,1000,Provided,Not Available,0.10%,38.80%,8.10%,6.80%,30.90%,5%,3%,Not Available,Not Available,Not Available,7.40%
-Sociopol,,28/08/2017,14/09/2017,National,1005,Provided,Not Available,1%,51%,6%,7%,27%,4%,3%,Not Available,Not Available,Not Available,2%
-Avangarde,,11/08/2017,23/08/2017,National,710,Provided,Not Available,1%,46%,7%,6%,25%,5%,4%,Not Available,Not Available,Not Available,7%
-Avangarde,,15/06/2017,22/06/2017,National,781,Provided,Not Available,1%,46%,6%,9%,30%,3%,5%,Not Available,Not Available,Not Available,1%
-IMAS,,01/04/2017,30/04/2017,National,1000,Estimated/Assumed,Not Available,0.10%,40.60%,8.50%,8.20%,25.40%,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
-Sociopol,,06/03/2017,14/03/2017,National,1007,Provided,Not Available,1%,47%,6%,12%,21%,5%,3%,Not Available,Not Available,Not Available,6%
-IMAS,,01/01/2017,31/01/2017,National,1000,Estimated/Assumed,Not Available,0.10%,49%,6.80%,8.30%,20.70%,Not Available,Not Available,Not Available,Not Available,Not Available,Not Available
+"","�..Polling.Firm","Commissioners","Fieldwork.Start","Fieldwork.End","Scope","Sample.Size","Sample.Size.Qualification","Participation","Precision","PSD","ALDE","USR","PNL","UDMR","PMP","PLUS","PRO","USR.PLUS","Other","Source"
+"1","IMAS",NA,"07/09/2020","23/09/2020","National","1010","Provided","Not Available","0.10%","19.6%","3%","Not Available","34.7%","5.3%","4.5%","Not Available","9.5%","17%","6.4%","https://en.wikipedia.org/wiki/2020_Romanian_legislative_election"
+"2","IMAS","Europa FM","06/08/2020","26/08/2020","National","1010","Provided","Not Available","0.10%","20.80%","2.40%","Not Available","33.60%","5.70%","4.10%","Not Available","10.60%","18.30%","4.60%","https://europeelects.eu/romania/"
+"3","CURS",NA,"29/07/2020","05/08/2020","National","1100","Provided","Not Available","1%","28%","5%","Not Available","31%","4%","5%","Not Available","7%","14%","6%","https://europeelects.eu/romania/"
+"4","IMAS","Europa FM","10/07/2020","29/07/2020","National","1010","Provided","Not Available","0.10%","23.40%","3.40%","Not Available","33.40%","5.60%","3.90%","Not Available","9.70%","17.20%","3.40%","https://europeelects.eu/romania/"
+"5","CURS","STIRIPESURSE.RO","19/06/2020","30/06/2020","National","1100","Provided","Not Available","1%","28%","5%","Not Available","32%","5%","5%","Not Available","7%","16%","2%","https://europeelects.eu/romania/"
+"6","IMAS","Europa FM","05/06/2020","27/06/2020","National","1010","Provided","Not Available","0.10%","21.90%","4.70%","18.10%","33%","3.70%","11.20%","3.40%","4%","Not Available","11.10%","https://europeelects.eu/romania/"
+"7","Avangarde",NA,"15/05/2020","26/05/2020","National","1000","Provided","Not Available","1%","29%","4%","Not Available","35%","5%","4%","Not Available","6%","13%","4%","https://europeelects.eu/romania/"
+"8","IMAS","Europa FM","08/05/2020","27/05/2020","National","1010","Provided","Not Available","0.10%","23%","4.20%","11.60%","32.60%","5.10%","3.70%","5.10%","11.20%","Not Available","3.10%","https://europeelects.eu/romania/"
+"9","INSCOP",NA,"15/05/2020","20/05/2020","National","1132","Provided","Not Available","0.10%","17.50%","3.50%","10.20%","25.50%","3.60%","6.30%","6.00%","0.70%","Not Available","7.00%","https://europeelects.eu/romania/"
+"10","PSD",NA,"21/05/2020","21/05/2020","National","Not Available","N/A","Not Available","1%","27%","4%","16%","35%","4%","4%","2%","8%","Not Available","Not Available","https://europeelects.eu/romania/"
+"11","BCS",NA,"01/05/2020","07/05/2020","National","1545","Provided","Not Available","0.10%","22.50%","6.50%","22.00%","33.00%","1.40%","5.10%","5.30%","4.30%","Not Available","10.50%","https://europeelects.eu/romania/"
+"12","IMAS","Europa FM","06/04/2020","24/04/2020","National","1010","Provided","Not Available","0.10%","24.80%","4.40%","10.80%","33.00%","5.50%","3.40%","5.10%","8.20%","Not Available","4.80%","https://europeelects.eu/romania/"
+"13","Avangarde","STIRIPESURSE.RO","06/04/2020","12/04/2020","National","915","Provided","Not Available","1%","28%","4%","Not Available","37%","4%","3%","Not Available","5%","15%","1%","https://europeelects.eu/romania/"
+"14","BCS",NA,"11/04/2020","15/04/2020","National","1008","Provided","Not Available","0.10%","22.90%","2.50%","Not Available","31.30%","3.60%","6.70%","Not Available","8.80%","20%","1%","https://europeelects.eu/romania/"
+"15","IMAS","Europa FM","05/03/2020","26/03/2020","National","1010","Provided","Not Available","0.10%","23.90%","3.50%","12.50%","36.70%","4.50%","3.50%","6.50%","5.80%","Not Available","3.00%","https://europeelects.eu/romania/"
+"16","IMAS","Europa FM","11/02/2020","28/02/2020","National","1010","Provided","Not Available","0.10%","25.80%","4.30%","10.00%","40.70%","4.40%","3.60%","3.50%","4.60%","Not Available","3.10%","https://europeelects.eu/romania/"
+"17","CURS","STIRIPESURSE.RO","20/01/2020","30/01/2020","National","1229","Provided","Not Available","1%","26%","4%","Not Available","37%","5%","4%","Not Available","6%","14%","1%","https://europeelects.eu/romania/"
+"18","IMAS","Europa FM","13/01/2020","31/01/2020","National","1011","Provided","Not Available","0.10%","20.60%","3.20%","12.30%","47.40%","4.70%","1.80%","3.40%","3.80%","Not Available","2.70%","https://europeelects.eu/romania/"
+"19","Sociopol",NA,"13/12/2019","18/12/2019","National","1000","Provided","Not Available","1%","23%","2%","13%","47%","4%","3%","Not Available","5%","Not Available","3%","https://europeelects.eu/romania/"
+"20","IMAS","Europa FM","04/12/2019","18/12/2019","National","1011","Provided","Not Available","0.10%","18.50%","3.50%","11.50%","45.00%","5.00%","3.00%","3.50%","6.40%","Not Available","4.60%","https://europeelects.eu/romania/"
+"21","CURS","STIRIPESURSE.RO","12/12/2019","17/12/2019","National","1067","Provided","Not Available","1%","31%","4%","Not Available","35%","4%","5%","Not Available","6%","14%","1%","https://europeelects.eu/romania/"
+"22","IMAS","Europa FM","11/11/2019","27/11/2019","National","1011","Provided","Not Available","0.10%","21.30%","3.30%","12.60%","39.00%","4.20%","2.90%","5.60%","6.40%","Not Available","4.70%","https://europeelects.eu/romania/"
+"23","USR",NA,"25/10/2019","03/11/2019","National","1225","Provided","Not Available","0.10%","24.00%","Not Available","Not Available","38.20%","4.50%","4.30%","Not Available","4.80%","20%","4.20%","https://europeelects.eu/romania/"
+"24","IMAS","Europa FM","08/10/2019","28/10/2019","National","1010","Provided","Not Available","0.10%","21.20%","4.30%","16.40%","29.60%","5.50%","3.40%","4.50%","10.70%","Not Available","4.40%","https://europeelects.eu/romania/"
+"25","USR",NA,"15/10/2019","23/10/2019","National","1225","Estimated/Assumed","Not Available","0.10%","24.90%","4.00%","19.90%","36.80%","Not Available","6.50%","4.00%","3.90%","Not Available","11.90%","https://europeelects.eu/romania/"
+"26","BCS",NA,"12/10/2019","19/10/2019","National","1117","Provided","Not Available","0.10%","23.80%","5.60%","16.80%","36.30%","3.30%","5.60%","5.70%","2.90%","Not Available","12.50%","https://europeelects.eu/romania/"
+"27","IMAS","Europa FM","05/09/2019","28/09/2019","National","1010","Provided","Not Available","0.10%","20.50%","6.40%","18.80%","29.20%","5.50%","3.40%","5.40%","9.50%","Not Available","Not Available","https://europeelects.eu/romania/"
+"28","USR",NA,"03/09/2019","24/09/2019","National","1500","Provided","Not Available","0.10%","25.30%","3.20%","21.20%","36.80%","Not Available","5.60%","2.90%","5.20%","Not Available","11.50%","https://europeelects.eu/romania/"
+"29","Socio-Data",NA,"16/09/2019","20/09/2019","National","1070","Provided","Not Available","1%","25%","4%","Not Available","28%","5%","5%","Not Available","9%","22%","2%","https://europeelects.eu/romania/"
+"30","Socio-Data",NA,"09/09/2019","13/09/2019","National","1070","Provided","Not Available","1%","26%","5%","Not Available","32%","4%","3%","Not Available","6%","22%","2%","https://europeelects.eu/romania/"
+"31","Socio-Data",NA,"02/09/2019","06/09/2019","National","1070","Provided","Not Available","1%","24%","6%","Not Available","32%","4%","5%","Not Available","9%","21%","2%","https://europeelects.eu/romania/"
+"32","Sociopol",NA,"19/08/2019","31/08/2019","National","1001","Provided","Not Available","1%","20%","5%","Not Available","35%","3%","5%","Not Available","11%","16%","5%","https://europeelects.eu/romania/"
+"33","Socio-Data",NA,"26/08/2019","30/08/2019","National","1070","Provided","Not Available","1%","22%","6%","Not Available","26%","4%","5%","Not Available","10%","24%","3%","https://europeelects.eu/romania/"
+"34","Verifield",NA,"26/08/2019","30/08/2019","National","1000","Provided","Not Available","1%","25%","6%","Not Available","28%","4%","2%","Not Available","8%","23%","4%","https://europeelects.eu/romania/"
+"35","IMAS","Europa FM","05/08/2019","28/08/2019","National","1010","Provided","Not Available","0.10%","17.90%","7.40%","19.80%","28.40%","4.60%","2.90%","5.50%","8.70%","Not Available","4.80%","https://europeelects.eu/romania/"
+"36","CURS","STIRIPESURSE.RO","19/07/2019","05/08/2019","National","1600","Provided","Not Available","1%","24%","8%","Not Available","31%","4%","5%","Not Available","7%","20%","1%","https://europeelects.eu/romania/"
+"37","IMAS","Europa FM","15/07/2019","02/08/2019","National","1010","Provided","Not Available","0.10%","19.40%","7.30%","21.40%","25.50%","4.20%","2.90%","6%","9%","Not Available","4.20%","https://europeelects.eu/romania/"
+"38","BCS",NA,"17/07/2019","23/07/2019","National","1128","Provided","Not Available",NA,"25.40%","5.70%","Not Available","34.20%","4.60%","5.50%","Not Available","5%","18.60%","1.10%","https://en.wikipedia.org/wiki/2020_Romanian_legislative_election"
+"39","CURS","STIRIPESURSE.RO","28/06/2019","08/07/2019","National","1067","Provided","Not Available","1%","26%","5%","Not Available","29%","4%","4%","Not Available","8%","22%","2%","https://europeelects.eu/romania/"
+"40","BCS",NA,"07/07/2019","23/07/2019","National","1128","Provided","Not Available","0.10%","25.40%","5.50%","18.60%","34.20%","5.70%","4.80%","4.60%","1.10%","Not Available","8.80%","https://europeelects.eu/romania/"
+"41","IMAS","Europa FM","07/06/2019","26/06/2019","National","1010","Provided","Not Available","0.10%","18.90%","8.50%","17.60%","27.50%","2.50%","3.70%","7.60%","9.80%","Not Available","3.80%","https://europeelects.eu/romania/"
+"42","Novel","PNL","14/05/2019","19/05/2019","European","1219","Provided","Not Available","0.10%","27.80%","7.90%","14.80%","28.10%","5.00%","6.70%","Not Available","7.80%","Not Available","1.10%","https://europeelects.eu/romania/"
+"43","IMAS","Europa FM","02/05/2019","20/05/2019","European","1010","Provided","Not Available","0.10%","21.10%","9.80%","19.60%","28.50%","3.80%","6.20%","Not Available","9.90%","Not Available","1.10%","https://europeelects.eu/romania/"
+"44","IMAS","Europa FM","02/05/2019","20/05/2019","National","1010","Provided","Not Available","0.10%","21.40%","10.20%","14.40%","29.30%","3.30%","5.50%","6.30%","8.00%","Not Available","1.70%","https://europeelects.eu/romania/"
+"45","INSCOP","Konrad-Adenauer-Stiftung","12/04/2019","03/05/2019","European","1050","Provided","Not Available","0.10%","26%","9%","17%","28%","5%","4.40%","Not Available","8.30%","Not Available","4%","https://europeelects.eu/romania/"
+"46","CURS","STIRIPESURSE.RO","05/04/2019","28/04/2019","European","1500","Provided","Not Available","1%","32%","10%","Not Available","25%","5%","5%","Not Available","9%","12%","2%","https://europeelects.eu/romania/"
+"47","IMAS","Europa FM","12/04/2019","25/04/2019","European","1010","Provided","Not Available","0.10%","22%","12.20%","16.40%","25.60%","5.60%","5.60%","Not Available","11.70%","Not Available","1.10%","https://europeelects.eu/romania/"
+"48","IMAS","Europa FM","18/03/2019","03/04/2019","European","1010","Provided","Not Available","0.10%","21.20%","12.70%","17.70%","25.20%","5.10%","4.70%","Not Available","11.20%","Not Available","1.90%","https://europeelects.eu/romania/"
+"49","CURS","STIRIPESURSE.RO","12/03/2019","25/03/2019","European","1067","Provided","Not Available","1%","31%","10%","Not Available","23%","5%","6%","Not Available","8%","13%","4%","https://europeelects.eu/romania/"
+"50","BCS","PSnews.ro","15/03/2019","20/03/2019","European","1144","Provided","Not Available","0.10%","26.50%","8.10%","10.80%","29.80%","4.40%","6.20%","Not Available","10.20%","Not Available","4%","https://europeelects.eu/romania/"
+"51","INSCOP","Konrad-Adenauer-Stiftung","05/03/2019","13/03/2019","European","1053","Provided","Not Available","0.10%","26.90%","9.30%","15.30%","26.30%","5%","4.40%","Not Available","9.10%","Not Available","3.70%","https://europeelects.eu/romania/"
+"52","CURS","STIRIPESURSE.RO","13/02/2019","28/02/2019","European","1500","Provided","Not Available","1%","31%","12%","12%","23%","5%","5%","Not Available","10%","Not Available","1%","https://europeelects.eu/romania/"
+"53","IMAS","Europa FM","01/02/2019","21/02/2019","European","1010","Provided","Not Available","0.10%","22.70%","12.50%","17.90%","22.60%","4.70%","4.40%","Not Available","13.40%","Not Available","1.80%","https://europeelects.eu/romania/"
+"54","IMAS","Europa FM","01/02/2019","21/02/2019","National","1010","Provided","Not Available","0.10%","23.40%","12.40%","10.50%","23.60%","5.00%","3.50%","8.00%","11.10%","Not Available","2.50%","https://europeelects.eu/romania/"
+"55","CURS","STIRIPESURSE.RO","21/01/2019","06/02/2019","European","1067","Provided","Not Available","1%","32%","9%","8%","22%","5%","5%","5%","9%","Not Available","5%","https://europeelects.eu/romania/"
+"56","CURS","STIRIPESURSE.RO","21/01/2019","06/02/2019","National","1067","Provided","Not Available","1%","31%","10%","9%","21%","5%","5%","4%","8%","Not Available","7%","https://europeelects.eu/romania/"
+"57","INSCOP","Konrad-Adenauer-Stiftung","21/01/2019","05/02/2019","European","1080","Provided","Not Available","0.10%","27.80%","9.20%","10.00%","26.70%","5.10%","4.40%","7.00%","6.60%","Not Available","3.20%","https://europeelects.eu/romania/"
+"58","Sociopol",NA,"28/01/2019","04/02/2019","National","1003","Provided","Not Available","1%","33%","11%","9%","20%","4%","2%","6%","8%","Not Available","7%","https://europeelects.eu/romania/"
+"59","PNL",NA,"01/01/2019","31/01/2019","National","26000","Provided","Not Available","0.10%","30.20%","11.60%","10.20%","27.00%","5.00%","4.20%","5.00%","5.50%","Not Available","1.30%","https://europeelects.eu/romania/"
+"60","IMAS","Europa FM","11/01/2019","30/01/2019","European","1011","Provided","Not Available","0.10%","24.60%","12.90%","13.10%","23.30%","5.60%","2.50%","7.30%","9.00%","Not Available","1.60%","https://europeelects.eu/romania/"
+"61","IMAS","Europa FM","11/01/2019","30/01/2019","National","1011","Provided","Not Available","0.10%","25.30%","13.40%","11.00%","22.10%","4.40%","3.80%","8.90%","8.10%","Not Available","3.20%","https://europeelects.eu/romania/"
+"62","BCS","PSnews.ro","12/01/2019","20/01/2019","European","Not Available","N/A","Not Available","0.10%","23.00%","8.10%","6.50%","23.70%","4.80%","9.30%","8.10%","10.70%","Not Available","5.80%","https://europeelects.eu/romania/"
+"63","IMAS","Europa FM","04/12/2018","20/12/2018","National","1010","Provided","Not Available","0.10%","25.20%","9.60%","11.50%","26.10%","4.60%","2.50%","8.10%","6.20%","Not Available","6.20%","https://europeelects.eu/romania/"
+"64","CURS","STIRIPESURSE.RO","24/11/2018","09/12/2018","European","1067","Provided","Not Available","1%","33%","9%","7%","20%","6%","5%","5%","9%","Not Available","6%","https://europeelects.eu/romania/"
+"65","CURS","STIRIPESURSE.RO","24/11/2018","09/12/2018","National","1067","Provided","Not Available","1%","33%","9%","7%","20%","6%","5%","5%","9%","Not Available","6%","https://europeelects.eu/romania/"
+"66","IMAS","Europa FM","01/11/2018","30/11/2018","National","1010","Provided","Not Available","0.10%","24.90%","11.70%","14.80%","23.30%","5.80%","2.10%","8.20%","Not Available","Not Available","9.20%","https://europeelects.eu/romania/"
+"67","CURS","STIRIPESURSE.RO","26/10/2018","12/11/2018","European","1067","Provided","Not Available","1%","38%","15%","8%","15%","Not Available","3%","7%","9%","Not Available","5%","https://europeelects.eu/romania/"
+"68","IMAS","Europa FM","01/10/2018","31/10/2018","National","1000","Estimated/Assumed","Not Available","0.10%","27.60%","10.60%","13.10%","21.90%","4.70%","4.10%","9.60%","Not Available","Not Available","8.40%","https://europeelects.eu/romania/"
+"69","Sociopol",NA,"03/10/2018","04/10/2018","National","873","Provided","Not Available","1%","38%","10%","6%","23%","4%","1%","5%","5%","Not Available","8%","https://europeelects.eu/romania/"
+"70","CURS","STIRIPESURSE.RO","20/09/2018","01/10/2018","National","1067","Provided","Not Available","1%","37%","9%","8%","22%","5%","5%","5%","6%","Not Available","3%","https://europeelects.eu/romania/"
+"71","IMAS","Europa FM","01/09/2018","30/09/2018","National","1000","Estimated/Assumed","Not Available","0.10%","28.10%","11.40%","9.50%","27.10%","5.60%","2.70%","10.10%","Not Available","Not Available","5.50%","https://europeelects.eu/romania/"
+"72","Sociopol",NA,"22/09/2018","27/09/2018","National","1004","Provided","Not Available","1%","36%","11%","4%","20%","4%","2%","8%","7%","Not Available","8%","https://europeelects.eu/romania/"
+"73","Sociopol",NA,"07/08/2018","20/08/2018","National","1005","Provided","Not Available","1%","35%","10%","8%","19%","4%","3%","13%","3%","Not Available","5%","https://europeelects.eu/romania/"
+"74","IRI",NA,"01/07/2018","31/07/2018","National","Not Available","N/A","Not Available","1%","26%","6%","5%","24%","1%","3%","7%","Not Available","Not Available","28%","https://europeelects.eu/romania/"
+"75","CURS","STIRIPESURSE.RO","23/06/2018","01/07/2018","National","1067","Provided","Not Available","1%","37%","8%","7%","24%","5%","4%","5%","5%","Not Available","4%","https://europeelects.eu/romania/"
+"76","IMAS",NA,"01/06/2018","30/06/2018","National","1200","Provided","Not Available","0.10%","28.40%","8.60%","11.30%","29.20%","5.00%","2.80%","8.00%","Not Available","Not Available","6.70%","https://europeelects.eu/romania/"
+"77","Sociopol","RomÃ¢nia TV","22/06/2018","26/06/2018","National","917","Provided","Not Available","1%","41%","12%","7%","20%","4%","1%","7%","5%","Not Available","3%","https://europeelects.eu/romania/"
+"78","Sociopol","RomÃ¢nia TV","28/05/2018","08/06/2018","National","1003","Provided","Not Available","1%","40%","7%","9%","18%","5%","1%","8%","3%","Not Available","9%","https://europeelects.eu/romania/"
+"79","CURS","STIRIPESURSE.RO","27/04/2018","08/05/2018","National","1067","Provided","Not Available","1%","39%","8%","6%","25%","6%","5%","3%","3%","Not Available","5%","https://europeelects.eu/romania/"
+"80","CURS","STIRIPESURSE.RO","01/03/2018","31/03/2018","National","1067","Estimated/Assumed","Not Available","1%","39%","12%","7%","27%","Not Available","5%","Not Available","Not Available","Not Available","10%","https://europeelects.eu/romania/"
+"81","Sociopol","STIRIPESURSE.RO","27/02/2018","05/03/2018","National","1000","Provided","Not Available","1%","34%","5%","12%","33%","6%","5%","Not Available","Not Available","Not Available","5%","https://europeelects.eu/romania/"
+"82","IMAS",NA,"01/02/2018","28/02/2018","National","1010","Provided","Not Available","0.10%","28.60%","10.60%","11.20%","29.40%","6.00%","4.60%","Not Available","Not Available","Not Available","9.60%","https://europeelects.eu/romania/"
+"83","CURS","STIRIPESURSE.RO","03/01/2018","10/01/2018","National","1068","Provided","Not Available","1%","42%","9%","5%","27%","6%","5%","2%","2%","Not Available","6%","https://europeelects.eu/romania/"
+"84","Avangarde",NA,"24/11/2017","07/12/2017","National","700","Provided","Not Available","1%","46%","13%","5%","23%","5%","4%","Not Available","Not Available","Not Available","4%","https://europeelects.eu/romania/"
+"85","CURS","STIRIPESURSE.RO","01/11/2017","30/11/2017","National","1067","Provided","Not Available","1%","43%","9%","5%","27%","6%","6%","Not Available","Not Available","Not Available","4%","https://europeelects.eu/romania/"
+"86","Sociopol",NA,"22/09/2017","05/10/2017","National","873","Estimated/Assumed","Not Available","1%","61%","4%","2%","24%","3%","3%","Not Available","Not Available","Not Available","3%","https://europeelects.eu/romania/"
+"87","IMAS",NA,"01/09/2017","30/09/2017","National","1000","Provided","Not Available","0.10%","38.80%","8.10%","6.80%","30.90%","5%","3%","Not Available","Not Available","Not Available","7.40%","https://europeelects.eu/romania/"
+"88","Sociopol",NA,"28/08/2017","14/09/2017","National","1005","Provided","Not Available","1%","51%","6%","7%","27%","4%","3%","Not Available","Not Available","Not Available","2%","https://europeelects.eu/romania/"
+"89","Avangarde",NA,"11/08/2017","23/08/2017","National","710","Provided","Not Available","1%","46%","7%","6%","25%","5%","4%","Not Available","Not Available","Not Available","7%","https://europeelects.eu/romania/"
+"90","Avangarde",NA,"15/06/2017","22/06/2017","National","781","Provided","Not Available","1%","46%","6%","9%","30%","3%","5%","Not Available","Not Available","Not Available","1%","https://europeelects.eu/romania/"
+"91","IMAS",NA,"01/04/2017","30/04/2017","National","1000","Estimated/Assumed","Not Available","0.10%","40.60%","8.50%","8.20%","25.40%","Not Available","Not Available","Not Available","Not Available","Not Available","Not Available","https://europeelects.eu/romania/"
+"92","Sociopol",NA,"06/03/2017","14/03/2017","National","1007","Provided","Not Available","1%","47%","6%","12%","21%","5%","3%","Not Available","Not Available","Not Available","6%","https://europeelects.eu/romania/"
+"93","IMAS",NA,"01/01/2017","31/01/2017","National","1000","Estimated/Assumed","Not Available","0.10%","49%","6.80%","8.30%","20.70%","Not Available","Not Available","Not Available","Not Available","Not Available","Not Available","https://europeelects.eu/romania/"
