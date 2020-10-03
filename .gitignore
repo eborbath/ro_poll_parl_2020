@@ -33,6 +33,7 @@ vignettes/*.pdf
 /lib/
 plotly_2020.html
 ro_polls_2020.xlsx
+recent_polls.html
 
 # Temporary files created by R markdown
 *.utf8.md

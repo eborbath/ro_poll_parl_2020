@@ -34,13 +34,13 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 path <- paste0(getwd(), "//")
 
 dat <- read_xlsx(paste0(path, "ro_polls_2020.xlsx"))
-write.csv(dat, paste0(path, "ro_polls_2020.csv"))
+write.csv(dat, paste0(path, "ro_polls_2020.csv"),row.names = FALSE)
 
 dat <- read.csv(paste0(path, "ro_polls_2020.csv"))
 
 
 dat <- dat %>%
-  rename(`Polling company`=`ï..Polling.Firm`) %>% 
+  rename(`Polling company`=`Polling.Firm`) %>% 
   mutate(`Polling company`=factor(`Polling company`),
          `Fieldwork.Start`=dmy(`Fieldwork.Start`),
          `Fieldwork.End`=dmy(`Fieldwork.End`)) %>% 
@@ -216,3 +216,20 @@ ggsave(plot=p,
        filename = "smaller.png",
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
+
+# writeLines("td, th { padding : 6px } th { background-color : brown ; color : white; border : 1px solid white; } td { color : brown ; border : 1px solid brown }", con = "mystyle.css")
+polls <- read.csv(paste0(path, "ro_polls_2020.csv"))
+polls <- polls %>% 
+  filter(Scope!="European") %>% 
+  select(-Commissioners, -Scope, -Sample.Size.Qualification, -Participation) %>% 
+  mutate_all(~ ifelse(.=="Not Available", "", .)) %>% 
+  rename(Firm=Polling.Firm,
+         Start=Fieldwork.Start,
+         End=Fieldwork.End,
+         Sample=Sample.Size)
+  # mutate(Source=paste0("<a href=", Source, " target='_blank'> link</a>"))
+
+display <- head(polls)
+sink(paste0(path, 'recent_polls.html'))
+knitr::kable(display, format = "html")
+sink()
