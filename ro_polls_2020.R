@@ -32,6 +32,7 @@ theme_set(theme_fivethirtyeight() +
 image_type <- ".jpeg"
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 path <- paste0(getwd(), "//")
+website <- "c:\\Users\\borbath\\Documents\\GitHub\\eborbath.github.io\\_includes\\"
 
 dat <- read_xlsx(paste0(path, "ro_polls_2020.xlsx"))
 write.csv(dat, paste0(path, "ro_polls_2020.csv"),row.names = FALSE)
@@ -63,16 +64,16 @@ colnames(dat)
 # To fill in the missings for the small parties for the plot
 
 UDMR.imp <- with(dat, zoo(UDMR, order.by = date))
-UDMR.imp <- na.ma(UDMR.imp, k = 4, weighting = "linear")
+UDMR.imp <- na_ma(UDMR.imp, k = 4, weighting = "exponential")
 
 PMP.imp <- with(dat, zoo(PMP, order.by = date))
-PMP.imp <- na.ma(PMP.imp, k = 4, weighting = "linear")
+PMP.imp <- na_ma(PMP.imp, k = 4, weighting = "exponential")
 
 ALDE.imp <- with(dat, zoo(ALDE, order.by = date))
-ALDE.imp <- na.ma(ALDE.imp, k = 4, weighting = "linear")
+ALDE.imp <- na_ma(ALDE.imp, k = 4, weighting = "exponential")
 
 PRO.imp <- with(dat, zoo(PRO, order.by = date))
-PRO.imp <- na.ma(PRO.imp, k = 4, weighting = "linear")
+PRO.imp <- na_ma(PRO.imp, k = 4, weighting = "exponential")
 
 dat <- cbind(dat, as.data.frame(UDMR.imp)[1])
 dat <- cbind(dat, as.data.frame(PMP.imp)[1])
@@ -142,6 +143,32 @@ p <- plot_ly(data=dat, x=~date) %>%
   add_lines(y = ~fitted(loess(UDMR~numdata)),
             line = list(color = '#2E8348'),
             name = "UDMR", showlegend = TRUE) %>%
+  add_markers(y = 27, x=as.Date("2019-05-26"), text = "PNL result (EP Election)", showlegend = FALSE,
+              marker=list(color="#cc9900", symbol='star-dot', size=15), name="PNL") %>%
+  add_markers(y = 22.5, x=as.Date("2019-05-26"), text = "PSD result (EP Election)", showlegend = FALSE,
+              marker=list(color="#EC1C24", symbol='star-dot', size=15), name="PSD") %>%
+  add_markers(y = 22.36, x=as.Date("2019-05-26"), text = "USR-PLUS result (EP Election)", showlegend = FALSE,
+              marker=list(color="#6843d1", symbol='star-dot', size=15), name="USR-PLUS") %>%
+  add_markers(y = 6.44, x=as.Date("2019-05-26"), text = "Pro Romania result (EP Election)", showlegend = FALSE,
+              marker=list(color="black", symbol='star-dot', size=15), name="Pro Romania") %>%
+  add_markers(y = 5.76, x=as.Date("2019-05-26"), text = "PMP result (EP Election)", showlegend = FALSE,
+              marker=list(color="#007BC8", symbol='star-dot', size=15), name="PMP") %>%
+  add_markers(y = 5.26, x=as.Date("2019-05-26"), text = "UDMR result (EP Election)", showlegend = FALSE,
+              marker=list(color="#2E8348", symbol='star-dot', size=15), name="UDMR") %>%
+  add_markers(y = 4.11, x=as.Date("2019-05-26"), text = "ALDE result (EP Election)", showlegend = FALSE,
+              marker=list(color="#D1439D", symbol='star-dot', size=15), name="ALDE") %>%
+  add_markers(y = 37.82, x=as.Date("2019-11-10"), text = "PNL result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="#cc9900", symbol='star-dot', size=15), name="PNL") %>%
+  add_markers(y = 22.26, x=as.Date("2019-11-10"), text = "PSD result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="#EC1C24", symbol='star-dot', size=15), name="PSD") %>%
+  add_markers(y = 15.02, x=as.Date("2019-11-10"), text = "USR-PLUS result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="#6843d1", symbol='star-dot', size=15), name="USR-PLUS") %>%
+  add_markers(y = 8.85, x=as.Date("2019-11-10"), text = "ALDE-Pro Romania result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="black", symbol='star-dot', size=15), name="ALDE-Pro Romania") %>%
+  add_markers(y = 5.72, x=as.Date("2019-11-10"), text = "PMP result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="#007BC8", symbol='star-dot', size=15), name="PMP") %>%
+  add_markers(y = 3.87, x=as.Date("2019-11-10"), text = "UDMR result (Pres. Election Ist Round)", showlegend = FALSE,
+              marker=list(color="#2E8348", symbol='star-dot', size=15), name="UDMR") %>%
   layout(legend = list(orientation = 'h', xanchor = 'left'),
          yaxis = list(title = "Parties' popularity in pp."),
          xaxis = list(title = ""))
@@ -179,6 +206,8 @@ to_plot <- long %>%
 p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
+  # geom_point(aes(x=as.Date("2019-11-10"),
+  #                y=r, color="Paleologu"), shape=8, size=4, show.legend=FALSE)
   scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS"),
                      values = c("#cc9900", "#EC1C24", "#6843d1")) +
   ylab("Parties' popularity in pp.") + xlab("") +
@@ -189,7 +218,7 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   expand_limits(y = 0)
 
 ggsave(plot=p,
-       filename = "winners.png",
+       filename = paste0("winners", image_type),
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
 
@@ -213,23 +242,23 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   expand_limits(y = 0)
 
 ggsave(plot=p,
-       filename = "smaller.png",
+       filename = paste0("smaller", image_type),
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
 
-# writeLines("td, th { padding : 6px } th { background-color : brown ; color : white; border : 1px solid white; } td { color : brown ; border : 1px solid brown }", con = "mystyle.css")
 polls <- read.csv(paste0(path, "ro_polls_2020.csv"))
 polls <- polls %>% 
   filter(Scope!="European") %>% 
-  select(-Commissioners, -Scope, -Sample.Size.Qualification, -Participation) %>% 
+  select(-Scope, -Sample.Size.Qualification, -Participation, -Precision) %>% 
   mutate_all(~ ifelse(.=="Not Available", "", .)) %>% 
+  mutate(Commissioners = ifelse(is.na(Commissioners), " ", Commissioners)) %>% 
   rename(Firm=Polling.Firm,
          Start=Fieldwork.Start,
          End=Fieldwork.End,
-         Sample=Sample.Size)
-  # mutate(Source=paste0("<a href=", Source, " target='_blank'> link</a>"))
+         Sample=Sample.Size) %>% 
+  select(where(~ !(all(is.na(.)) | all(. == ""))))
 
 display <- head(polls)
-sink(paste0(path, 'recent_polls.html'))
+sink(paste0(website, 'recent_polls.html'))
 knitr::kable(display, format = "html")
 sink()
