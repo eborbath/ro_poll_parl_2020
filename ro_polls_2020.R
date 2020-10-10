@@ -22,7 +22,6 @@ library(htmlwidgets)
 
 theme_set(theme_fivethirtyeight() +  
             theme(axis.title.x=element_blank(),
-                  # axis.text.x = element_text(angle = 45, hjust = 1),
                   legend.title = element_blank(),
                   legend.position="bottom", 
                   legend.direction="horizontal",
@@ -104,6 +103,16 @@ long <- dat %>%
   mutate(parties=ifelse(parties=="PRO", "Pro Romania", parties)) %>% 
   arrange(date) 
 
+##################################
+## To get the electoral results ##
+##################################
+
+source(paste0(path, "results_df.R"))
+results <- results %>% 
+  filter(type!="Local Election Mayors") %>% 
+  mutate(vote=round(vote, digits = 2))
+  
+
 # Interactive plot
 
 p <- plot_ly(data=dat, x=~date) %>% 
@@ -143,48 +152,59 @@ p <- plot_ly(data=dat, x=~date) %>%
   add_lines(y = ~fitted(loess(UDMR~numdata)),
             line = list(color = '#2E8348'),
             name = "UDMR", showlegend = TRUE) %>%
-  add_markers(y = 27, x=as.Date("2019-05-26"), text = "PNL result (EP Election)", showlegend = FALSE,
-              marker=list(color="#cc9900", symbol='star-dot', size=15), name="PNL") %>%
-  add_markers(y = 22.5, x=as.Date("2019-05-26"), text = "PSD result (EP Election)", showlegend = FALSE,
-              marker=list(color="#EC1C24", symbol='star-dot', size=15), name="PSD") %>%
-  add_markers(y = 22.36, x=as.Date("2019-05-26"), text = "USR-PLUS result (EP Election)", showlegend = FALSE,
-              marker=list(color="#6843d1", symbol='star-dot', size=15), name="USR-PLUS") %>%
-  add_markers(y = 6.44, x=as.Date("2019-05-26"), text = "Pro Romania result (EP Election)", showlegend = FALSE,
-              marker=list(color="black", symbol='star-dot', size=15), name="Pro Romania") %>%
-  add_markers(y = 5.76, x=as.Date("2019-05-26"), text = "PMP result (EP Election)", showlegend = FALSE,
-              marker=list(color="#007BC8", symbol='star-dot', size=15), name="PMP") %>%
-  add_markers(y = 5.26, x=as.Date("2019-05-26"), text = "UDMR result (EP Election)", showlegend = FALSE,
-              marker=list(color="#2E8348", symbol='star-dot', size=15), name="UDMR") %>%
-  add_markers(y = 4.11, x=as.Date("2019-05-26"), text = "ALDE result (EP Election)", showlegend = FALSE,
-              marker=list(color="#D1439D", symbol='star-dot', size=15), name="ALDE") %>%
-  add_markers(y = 37.82, x=as.Date("2019-11-10"), text = "PNL result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="#cc9900", symbol='star-dot', size=15), name="PNL") %>%
-  add_markers(y = 22.26, x=as.Date("2019-11-10"), text = "PSD result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="#EC1C24", symbol='star-dot', size=15), name="PSD") %>%
-  add_markers(y = 15.02, x=as.Date("2019-11-10"), text = "USR-PLUS result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="#6843d1", symbol='star-dot', size=15), name="USR-PLUS") %>%
-  add_markers(y = 8.85, x=as.Date("2019-11-10"), text = "ALDE-Pro Romania result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="black", symbol='star-dot', size=15), name="ALDE-Pro Romania") %>%
-  add_markers(y = 5.72, x=as.Date("2019-11-10"), text = "PMP result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="#007BC8", symbol='star-dot', size=15), name="PMP") %>%
-  add_markers(y = 3.87, x=as.Date("2019-11-10"), text = "UDMR result (Pres. Election Ist Round)", showlegend = FALSE,
-              marker=list(color="#2E8348", symbol='star-dot', size=15), name="UDMR") %>%
+  add_markers(data=results[results$parties=="PNL",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#cc9900", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="PNL") %>% 
+  add_markers(data=results[results$parties=="PSD",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#EC1C24", symbol='diamond-dot', size=11, 
+                          line = list(color = "black", width = 1)), name="PSD") %>%
+  add_markers(data=results[results$parties=="USR.PLUS",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#6843d1", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="USR-PLUS") %>%
+  add_markers(data=results[results$parties=="PRO",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="black", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="Pro Romania") %>%
+  add_markers(data=results[results$parties=="PMP",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#007BC8", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="PMP") %>%
+  add_markers(data=results[results$parties=="UDMR",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#2E8348", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="UDMR") %>%
+  add_markers(data=results[results$parties=="ALDE",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#D1439D", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="ALDE") %>%
+  add_markers(data=results[results$parties=="PRO.ALDE",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+              marker=list(color="#D1439D", symbol='diamond-dot', size=11,
+                          line = list(color = "black", width = 1)), name="ALDE-Pro Romania") %>%
   layout(legend = list(orientation = 'h', xanchor = 'left'),
          yaxis = list(title = "Parties' popularity in pp."),
          xaxis = list(title = ""))
 
 saveWidget(p, "plotly_2020.html", selfcontained = F, libdir = "lib")
 
-# autosize = F, width = 800, height = 600
-
-
 ## GGPLOT overall
 
 p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
-  geom_point(alpha = 1/3) +
+  geom_point(alpha = 1/4) +
   geom_smooth(method="loess", se=FALSE) +
   scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
                      values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8","#D1439D", "#2E8348")) +
+  geom_point(data=results[results$parties=="PNL",], aes(y=vote, x=date), 
+             fill="#cc9900", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PSD",], aes(y=vote, x=date), 
+             fill="#EC1C24", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="USR.PLUS",], aes(y=vote, x=date), 
+             fill="#6843d1", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PRO",], aes(y=vote, x=date), 
+             fill="black", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PMP",], aes(y=vote, x=date), 
+             fill="#007BC8", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
+             fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="UDMR",], aes(y=vote, x=date), 
+             fill="#2E8348", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PRO.ALDE",], aes(y=vote, x=date), 
+             fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
   scale_x_date(date_breaks = "4 month", date_labels =  "%b-%y") +
@@ -193,9 +213,45 @@ p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
   expand_limits(y = 0)
 
 ggsave(plot=p,
-       filename = "overall.png",
+       filename = paste0("overall", image_type),
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
+
+to_plot <- long %>% 
+  filter(date>ymd("2019-11-24"))
+results <- results %>% 
+  filter(date>ymd("2019-11-24"))
+
+# distribution
+
+to_plot <- to_plot %>% 
+  mutate(parties=factor(parties, levels=c("PNL", "PSD", "USR-PLUS",
+                        "Pro Romania", "PMP", "ALDE", "UDMR")))
+
+grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+normaldens <- plyr::ddply(to_plot, "parties", function(df) {
+  data.frame(
+    percent = grid,
+    density = dnorm(grid, mean(df$percent), sd(df$percent))
+  )
+})
+
+p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
+  geom_density(alpha=1/3, color=NA) +
+  geom_line(aes(y = density), data = normaldens) +
+  facet_wrap(~parties, nrow=3) +
+  scale_fill_manual("",
+                    breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
+                    values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8","#D1439D", "#2E8348")) +
+  xlim(0, 55)
+
+
+ggsave(plot=p,
+       filename = paste0("dis_overall", image_type),
+       path=paste0(path, "static\\"),
+       scale=1.1,
+       width = 7, height = 6, dpi=400)
+  
 
 ## Potential winners since the presidential elections
 
@@ -206,10 +262,14 @@ to_plot <- long %>%
 p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
-  # geom_point(aes(x=as.Date("2019-11-10"),
-  #                y=r, color="Paleologu"), shape=8, size=4, show.legend=FALSE)
   scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS"),
                      values = c("#cc9900", "#EC1C24", "#6843d1")) +
+  geom_point(data=results[results$parties=="PNL",], aes(y=vote, x=date), 
+             fill="#cc9900", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PSD",], aes(y=vote, x=date), 
+             fill="#EC1C24", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="USR.PLUS",], aes(y=vote, x=date), 
+             fill="#6843d1", alpha=1, shape=22, color="black", size=3) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b-%y") +
@@ -219,6 +279,47 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
 
 ggsave(plot=p,
        filename = paste0("winners", image_type),
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)
+
+
+# distributions
+
+p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
+  geom_density(alpha=1/3, color=NA) +
+  scale_fill_manual("",breaks=c("USR-PLUS", "PSD", "PNL"),
+                     values = c("#6843d1", "#EC1C24", "#cc9900")) +
+  stat_function(fun = dnorm, args = list(mean = mean(to_plot$percent[to_plot$parties=="PSD"]), 
+                                         sd = sd(to_plot$percent[to_plot$parties=="PSD"]))) +
+  stat_function(fun = dnorm, args = list(mean = mean(to_plot$percent[to_plot$parties=="PNL"]), 
+                                         sd = sd(to_plot$percent[to_plot$parties=="PNL"]))) +
+  stat_function(fun = dnorm, args = list(mean = mean(to_plot$percent[to_plot$parties=="USR-PLUS"]), 
+                                         sd = sd(to_plot$percent[to_plot$parties=="USR-PLUS"]))) +
+  xlim(5, 55)
+  
+ggsave(plot=p,
+       filename = paste0("dis_winners", image_type),
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)
+
+grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+normaldens <- plyr::ddply(to_plot, "parties", function(df) {
+  data.frame(
+    percent = grid,
+    density = dnorm(grid, mean(df$percent), sd(df$percent))
+  )
+})
+
+p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
+  geom_density(alpha=1/3, color=NA) +
+  geom_line(aes(y = density), data = normaldens) +
+  facet_wrap(~parties, nrow=2) +
+  scale_fill_manual("",breaks=c("PNL","PSD", "USR-PLUS"),
+                    values = c("#cc9900", "#EC1C24", "#6843d1")) +
+  xlim(0, 55)
+
+ggsave(plot=p,
+       filename = paste0("dis_winners2", image_type),
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
 
@@ -234,6 +335,14 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_hline(yintercept = 5, linetype="dotted") +
   scale_color_manual("",breaks=c("Pro Romania", "PMP", "ALDE", "UDMR"),
                      values = c("black", "#007BC8","#D1439D", "#2E8348")) +
+  geom_point(data=results[results$parties=="PRO",], aes(y=vote, x=date), 
+             fill="black", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="PMP",], aes(y=vote, x=date), 
+             fill="#007BC8", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
+             fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
+  geom_point(data=results[results$parties=="UDMR",], aes(y=vote, x=date), 
+             fill="#2E8348", alpha=1, shape=22, color="black", size=3) +
   ylab("Parties' popularity in pp.") + xlab("") +
   theme_bw() +
   scale_x_date(date_breaks = "1 month", date_labels =  "%b-%y") +
@@ -245,6 +354,32 @@ ggsave(plot=p,
        filename = paste0("smaller", image_type),
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
+
+
+# distributions
+
+grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+normaldens <- plyr::ddply(to_plot, "parties", function(df) {
+  data.frame(
+    percent = grid,
+    density = dnorm(grid, mean(df$percent), sd(df$percent))
+  )
+})
+
+p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
+  geom_density(alpha=1/3, color=NA) +
+  geom_line(aes(y = density), data = normaldens) +
+  facet_wrap(~parties) +
+  scale_fill_manual("",breaks=c("Pro Romania", "PMP", "ALDE", "UDMR"),
+                     values = c("black", "#007BC8","#D1439D", "#2E8348")) +
+  xlim(0, 15)
+
+ggsave(plot=p,
+       filename = paste0("dis_smaller", image_type),
+       path=paste0(path, "static\\"),
+       width = 8, height = 5, dpi=400)
+
+# table for the website
 
 polls <- read.csv(paste0(path, "ro_polls_2020.csv"))
 polls <- polls %>% 
