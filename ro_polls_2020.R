@@ -33,9 +33,6 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 path <- paste0(getwd(), "//")
 website <- "c:\\Users\\borbath\\Documents\\GitHub\\eborbath.github.io\\_includes\\"
 
-dat <- read_xlsx(paste0(path, "ro_polls_2020.xlsx"))
-write.csv(dat, paste0(path, "ro_polls_2020.csv"),row.names = FALSE)
-
 dat <- read.csv(paste0(path, "ro_polls_2020.csv"))
 
 
@@ -228,7 +225,8 @@ to_plot <- to_plot %>%
   mutate(parties=factor(parties, levels=c("PNL", "PSD", "USR-PLUS",
                         "Pro Romania", "PMP", "ALDE", "UDMR")))
 
-grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+grid <- with(to_plot, seq(min(percent, na.rm = TRUE)-sd(percent, na.rm = TRUE), 
+                          max(percent, na.rm = TRUE)+sd(percent, na.rm = TRUE), length = 1000))
 normaldens <- plyr::ddply(to_plot, "parties", function(df) {
   data.frame(
     percent = grid,
@@ -302,7 +300,8 @@ ggsave(plot=p,
        path=paste0(path, "static\\"),
        width = 8, height = 5, dpi=400)
 
-grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+grid <- with(to_plot, seq(min(percent, na.rm = TRUE)-sd(percent, na.rm = TRUE),
+                          max(percent, na.rm = TRUE)+sd(percent, na.rm = TRUE), length = 1000))
 normaldens <- plyr::ddply(to_plot, "parties", function(df) {
   data.frame(
     percent = grid,
@@ -358,7 +357,8 @@ ggsave(plot=p,
 
 # distributions
 
-grid <- with(to_plot, seq(min(percent)-sd(percent), max(percent)+sd(percent), length = 1000))
+grid <- with(to_plot, seq(min(percent, na.rm = TRUE)-sd(percent, na.rm = TRUE),
+                          max(percent, na.rm = TRUE)+sd(percent, na.rm = TRUE), length = 1000))
 normaldens <- plyr::ddply(to_plot, "parties", function(df) {
   data.frame(
     percent = grid,

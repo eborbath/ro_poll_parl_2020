@@ -1,9 +1,12 @@
 library(rvest)
 library(dplyr)
+library(tidyr)
 library(stringr)
 library(lubridate)
 
 # County Councils results, from: https://prezenta.roaep.ro/locale27092020/romania-pv-final
+
+path <- "c:\\Users\\borbath\\Documents\\GitHub\\ro_poll_parl_2020\\"
 
 local_res <- read.csv(paste0(path, "\\results_2020_local\\pv_final_cntry_cj.csv"))
 
