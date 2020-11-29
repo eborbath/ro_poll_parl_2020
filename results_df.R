@@ -8,62 +8,25 @@ library(lubridate)
 
 path <- "c:\\Users\\borbath\\Documents\\GitHub\\ro_poll_parl_2020\\"
 
-local_res <- read.csv(paste0(path, "\\results_2020_local\\pv_final_cntry_cj.csv"))
+url <- "https://en.wikipedia.org/wiki/2020_Romanian_local_elections#Results"
+webpage <- read_html(url)
+tbls <- html_nodes(webpage, "table")
+df <- html_table(tbls, fill = T)[[5]]
+df <- df[, c(2, 13)]
 
-colnames(local_res)[27] <- "PMP"
-colnames(local_res)[42] <- "ALDE"
-colnames(local_res)[30] <- "UDMR"
-colnames(local_res)[39] <- "PNL"
-colnames(local_res)[36] <- "PSD"
-colnames(local_res)[54] <- "USR.PLUS"
-colnames(local_res)[33] <- "PRO"
-
-results <- local_res %>% 
-  mutate(total=sum(c, na.rm = TRUE)) %>% 
-  select(total, PNL, PSD, USR.PLUS, PMP, ALDE, PRO, UDMR) %>% 
-  mutate(PNL=sum(PNL, na.rm=TRUE),
-         PSD=sum(PSD, na.rm=TRUE),
-         USR.PLUS=sum(USR.PLUS, na.rm=TRUE),
-         PMP=sum(PMP, na.rm=TRUE),
-         ALDE=sum(ALDE, na.rm=TRUE),
-         PRO=sum(PRO, na.rm=TRUE),
-         UDMR=sum(UDMR, na.rm=TRUE)) %>% 
-  unique(.) %>% 
-  mutate_at(vars(PNL, PSD, USR.PLUS, PMP, ALDE, PRO, UDMR), ~ .*100/total) %>%
-  select(-total) %>% 
-  pivot_longer(everything(), names_to = "parties", values_to="vote") %>% 
+results <- df %>% 
+  mutate(Party = case_when(grepl("National Liberal Party", Party) ~ "PNL",
+                           grepl("Social Democratic Party", Party) ~ "PSD",
+                           grepl("USR-PLUS", Party) ~ "USR.PLUS",
+                           grepl("People's Movement Party", Party) ~ "PMP",
+                           grepl("Hungarians in Romania", Party) ~ "UDMR",
+                           grepl("Alliance of Liberals and Democrats", Party) ~ "ALDE",
+                           grepl("PRO Romania", Party) ~ "PRO")) %>% 
+  filter(Party %in% c("PNL", "PSD", "USR.PLUS", "PMP", "UDMR", "ALDE", "PRO")) %>% 
+  rename(vote=`County Councilsseats (CJ)`) %>% 
+  mutate(vote=as.numeric(str_remove(vote, "%"))) %>% 
+  rename(parties = Party) %>% 
   mutate(type="Local Election County Councils")
-
-# Mayor results, from: https://prezenta.roaep.ro/locale27092020/romania-pv-final
-
-local_res <- read.csv(paste0(path, "\\results_2020_local\\pv_final_cntry_p.csv"))
-
-colnames(local_res)[29] <- "PMP"
-colnames(local_res)[31] <- "ALDE"
-colnames(local_res)[41] <- "UDMR"
-colnames(local_res)[23] <- "PNL"
-colnames(local_res)[25] <- "PSD"
-colnames(local_res)[27] <- "USR.PLUS"
-colnames(local_res)[33] <- "PRO"
-
-local_res <- local_res %>% 
-  mutate(total=sum(c, na.rm = TRUE)) %>% 
-  select(total, PNL, PSD, USR.PLUS, PMP, ALDE, PRO, UDMR) %>% 
-  mutate(PNL=sum(PNL, na.rm=TRUE),
-         PSD=sum(PSD, na.rm=TRUE),
-         USR.PLUS=sum(USR.PLUS, na.rm=TRUE),
-         PMP=sum(PMP, na.rm=TRUE),
-         ALDE=sum(ALDE, na.rm=TRUE),
-         PRO=sum(PRO, na.rm=TRUE),
-         UDMR=sum(UDMR, na.rm=TRUE)) %>% 
-  unique(.) %>% 
-  mutate_at(vars(PNL, PSD, USR.PLUS, PMP, ALDE, PRO, UDMR), ~ .*100/total) %>%
-  select(-total) %>% 
-  pivot_longer(everything(), names_to = "parties", values_to="vote") %>% 
-  mutate(type="Local Election Mayors")
-
-results <- rbind(results, local_res)
-rm(local_res)
 
 ## EP Elections, from Wikipedia
 

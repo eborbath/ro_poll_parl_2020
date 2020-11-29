@@ -106,7 +106,6 @@ long <- dat %>%
 
 source(paste0(path, "results_df.R"))
 results <- results %>% 
-  filter(type!="Local Election Mayors") %>% 
   mutate(vote=round(vote, digits = 2))
   
 
