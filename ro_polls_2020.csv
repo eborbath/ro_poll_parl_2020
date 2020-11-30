@@ -1,4 +1,5 @@
 Polling.Firm,Commissioners,Fieldwork.Start,Fieldwork.End,Scope,Sample.Size,Sample.Size.Qualification,Participation,Precision,PSD,ALDE,USR,PNL,UDMR,PMP,PLUS,PRO,USR.PLUS,Other,Source
+Verifield,Pro Romania,20/11/2020,25/11/2020,National,1100,Provided,Not Available,0.10%,22%,Not Available,Not Available,31.30%,5.40%,4.80%,Not Available,9.30%,17%,10.20%,https://en.wikipedia.org/wiki/2020_Romanian_legislative_election
 ADS,PER,11/11/2020,18/11/2020,National,1280,Provided,Not Available,0.10%,27.30%,Not Available,Not Available,31.20%,5.10%,4.80%,Not Available,4.60%,12.50%,14.80%,https://europeelects.eu/romania/
 PNL,PNL,09/11/2020,09/11/2020,National,Not Available,N/A,Not Available,Not Available,27.00%,Not Available,Not Available,32.00%,6.00%,6.00%,Not Available,5.00%,21,3.00%,https://en.wikipedia.org/wiki/2020_Romanian_legislative_election
 CURS,STIRIPESURSE.RO,01/11/2020,10/11/2020,National,1067,Provided,Not Available,1%,29%,3%,Not Available,32%,5%,7%,Not Available,6%,16%,Not Available,https://europeelects.eu/romania/
