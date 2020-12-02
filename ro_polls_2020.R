@@ -45,7 +45,8 @@ dat <- dat %>%
   mutate_at(vars(Precision:Other), ~ifelse(.=="Not Available", NA, .)) %>% 
   mutate_at(vars(Precision:Other), ~as.numeric(str_replace_all(., c("%" = "")))) %>% 
   rowwise %>%
-  mutate(date=mean.Date(c(`Fieldwork.Start`, `Fieldwork.End`), na.rm = TRUE)) %>% 
+  # mutate(date=mean.Date(c(`Fieldwork.Start`, `Fieldwork.End`), na.rm = TRUE)) %>% 
+  mutate(date=`Fieldwork.End`, na.rm=TRUE) %>% 
   select(`Polling company`, date, PSD:Other) %>% 
   mutate_at(vars(USR, PLUS), ~ifelse(is.na(.), 0, .)) %>% 
   mutate(USR.PLUS=ifelse(is.na(USR.PLUS), USR+PLUS, USR.PLUS)) %>% 
