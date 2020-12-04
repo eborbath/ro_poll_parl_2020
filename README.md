@@ -21,3 +21,11 @@ The 2020 local election results are calculated based on the files included in re
 ## Attribution
 
 Please refer to this work as: Endre Borbáth, 2020. "Public Opinion Polls for the 2020 Romanian Parliamentary Elections" https://github.com/eborbath/ro_poll_parl_2020
+
+A collection of articles published based on this work is available here:
+
+## Romanian
+
+[Incursiune în sondajele pentru alegerile parlamentare](https://www.openpolitics.ro/incursiune-in-sondajele-pentru-alegerile-parlamentare/), Open Politics, December 04, 2019
+
+[Ce spun sondajele despre alegerile parlamentare din 6 decembrie. Și de ce nu sunt excluse surprizele](https://www.libertatea.ro/stiri/sondaje-alegeri-parlamentare-6-decembrie-3306768), Libertatea, December 04, 2019
