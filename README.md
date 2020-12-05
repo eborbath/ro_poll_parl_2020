@@ -26,6 +26,10 @@ A collection of articles published based on this work is available here:
 
 ## Romanian
 
-[Incursiune în sondajele pentru alegerile parlamentare](https://www.openpolitics.ro/incursiune-in-sondajele-pentru-alegerile-parlamentare/), Open Politics, December 04, 2019
+[Incursiune în sondajele pentru alegerile parlamentare](https://www.openpolitics.ro/incursiune-in-sondajele-pentru-alegerile-parlamentare/), Open Politics, December 04, 2020
 
-[Ce spun sondajele despre alegerile parlamentare din 6 decembrie. Și de ce nu sunt excluse surprizele](https://www.libertatea.ro/stiri/sondaje-alegeri-parlamentare-6-decembrie-3306768), Libertatea, December 04, 2019
+[Ce spun sondajele despre alegerile parlamentare din 6 decembrie. Și de ce nu sunt excluse surprizele](https://www.libertatea.ro/stiri/sondaje-alegeri-parlamentare-6-decembrie-3306768), Libertatea, December 04, 2020
+
+## Hungarian
+
+[Román parlamenti választás tévés viták és rekordrészvétel nélkül, járványhelyzettel súlyosbítva](https://kozvelemeny.wordpress.com/2020/12/04/roman-parlamenti-valasztas-teves-vitak-es-rekordreszvetel-nelkul-jarvanyhelyzettel-sulyosbitva/), Vox Populi, December 05, 2020

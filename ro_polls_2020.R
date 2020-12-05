@@ -99,7 +99,8 @@ long <- dat %>%
   pivot_longer(cols=PSD:PRO, names_to="parties", values_to="percent") %>% 
   filter(parties!="Other") %>% 
   mutate(parties=ifelse(parties=="PRO", "Pro Romania", parties)) %>% 
-  arrange(date) 
+  arrange(date) %>% 
+  filter(!(parties %in% c("ALDE", "AUR")))
 
 ##################################
 ## To get the electoral results ##
@@ -139,11 +140,11 @@ p <- plot_ly(data=dat, x=~date) %>%
   add_lines(y = ~fitted(loess(PMP~numdata)),
             line = list(color = '#007BC8'),
             name = "PMP", showlegend = TRUE) %>%
-  add_markers(y = ~ALDE, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
-              marker=list(color="#D1439D"), name="ALDE") %>%
-  add_lines(y = ~fitted(loess(ALDE~numdata)),
-            line = list(color = '#D1439D'),
-            name = "ALDE", showlegend = TRUE) %>%
+  # add_markers(y = ~ALDE, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
+  #             marker=list(color="#D1439D"), name="ALDE") %>%
+  # add_lines(y = ~fitted(loess(ALDE~numdata)),
+  #           line = list(color = '#D1439D'),
+  #           name = "ALDE", showlegend = TRUE) %>%
   add_markers(y = ~UDMR, text = ~`Polling company`, showlegend = FALSE, opacity=0.3,
               marker=list(color="#2E8348"), name="UDMR") %>%
   add_lines(y = ~fitted(loess(UDMR~numdata)),
@@ -167,9 +168,9 @@ p <- plot_ly(data=dat, x=~date) %>%
   add_markers(data=results[results$parties=="UDMR",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
               marker=list(color="#2E8348", symbol='diamond-dot', size=11,
                           line = list(color = "black", width = 1)), name="UDMR") %>%
-  add_markers(data=results[results$parties=="ALDE",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
-              marker=list(color="#D1439D", symbol='diamond-dot', size=11,
-                          line = list(color = "black", width = 1)), name="ALDE") %>%
+  # add_markers(data=results[results$parties=="ALDE",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
+  #             marker=list(color="#D1439D", symbol='diamond-dot', size=11,
+  #                         line = list(color = "black", width = 1)), name="ALDE") %>%
   add_markers(data=results[results$parties=="PRO.ALDE",], y = ~ vote, x= ~ date, text = ~ type, showlegend = FALSE,
               marker=list(color="#D1439D", symbol='diamond-dot', size=11,
                           line = list(color = "black", width = 1)), name="ALDE-Pro Romania") %>%
@@ -184,8 +185,8 @@ saveWidget(p, "plotly_2020.html", selfcontained = F, libdir = "lib")
 p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/4) +
   geom_smooth(method="loess", se=FALSE) +
-  scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
-                     values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8","#D1439D", "#2E8348")) +
+  scale_color_manual("",breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "UDMR"),
+                     values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8", "#2E8348")) +
   geom_point(data=results[results$parties=="PNL",], aes(y=vote, x=date), 
              fill="#cc9900", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="PSD",], aes(y=vote, x=date), 
@@ -196,8 +197,8 @@ p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
              fill="black", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="PMP",], aes(y=vote, x=date), 
              fill="#007BC8", alpha=1, shape=22, color="black", size=3) +
-  geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
-             fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
+  # geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
+  #            fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="UDMR",], aes(y=vote, x=date), 
              fill="#2E8348", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="PRO.ALDE",], aes(y=vote, x=date), 
@@ -223,7 +224,7 @@ results <- results %>%
 
 to_plot <- to_plot %>% 
   mutate(parties=factor(parties, levels=c("PNL", "PSD", "USR-PLUS",
-                        "Pro Romania", "PMP", "ALDE", "UDMR")))
+                        "Pro Romania", "PMP", "UDMR")))
 
 grid <- with(to_plot, seq(min(percent, na.rm = TRUE)-sd(percent, na.rm = TRUE), 
                           max(percent, na.rm = TRUE)+sd(percent, na.rm = TRUE), length = 1000))
@@ -239,7 +240,7 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
   geom_line(aes(y = density), data = normaldens) +
   facet_wrap(~parties, nrow=3) +
   scale_fill_manual("",
-                    breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "ALDE", "UDMR"),
+                    breaks=c("PNL", "PSD", "USR-PLUS", "Pro Romania", "PMP", "UDMR"),
                     values = c("#cc9900", "#EC1C24", "#6843d1", "black", "#007BC8","#D1439D", "#2E8348")) +
   xlim(0, 55)
 
@@ -326,20 +327,20 @@ ggsave(plot=p,
 
 to_plot <- long %>% 
   filter(date>ymd("2019-11-24")) %>% 
-  filter(parties %in% c("Pro Romania", "PMP", "ALDE", "UDMR")) 
+  filter(parties %in% c("Pro Romania", "PMP", "UDMR")) 
 
 p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_point(alpha = 1/3) +
   geom_smooth(method="loess", se=FALSE) +
   geom_hline(yintercept = 5, linetype="dotted") +
-  scale_color_manual("",breaks=c("Pro Romania", "PMP", "ALDE", "UDMR"),
-                     values = c("black", "#007BC8","#D1439D", "#2E8348")) +
+  scale_color_manual("",breaks=c("Pro Romania", "PMP", "UDMR"),
+                     values = c("black", "#007BC8", "#2E8348")) +
   geom_point(data=results[results$parties=="PRO",], aes(y=vote, x=date), 
              fill="black", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="PMP",], aes(y=vote, x=date), 
              fill="#007BC8", alpha=1, shape=22, color="black", size=3) +
-  geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
-             fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
+  # geom_point(data=results[results$parties=="ALDE",], aes(y=vote, x=date), 
+  #            fill="#D1439D", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="UDMR",], aes(y=vote, x=date), 
              fill="#2E8348", alpha=1, shape=22, color="black", size=3) +
   ylab("Parties' popularity in pp.") + xlab("") +
@@ -370,8 +371,8 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
   geom_density(alpha=1/3, color=NA) +
   geom_line(aes(y = density), data = normaldens) +
   facet_wrap(~parties) +
-  scale_fill_manual("",breaks=c("Pro Romania", "PMP", "ALDE", "UDMR"),
-                     values = c("black", "#007BC8","#D1439D", "#2E8348")) +
+  scale_fill_manual("",breaks=c("Pro Romania", "PMP", "UDMR"),
+                     values = c("black", "#007BC8", "#2E8348")) +
   xlim(0, 15)
 
 ggsave(plot=p,
