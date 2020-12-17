@@ -19,7 +19,6 @@ library(xts)
 library(broom)
 library(htmlwidgets)
 
-
 theme_set(theme_fivethirtyeight() +  
             theme(axis.title.x=element_blank(),
                   legend.title = element_blank(),
@@ -31,7 +30,7 @@ theme_set(theme_fivethirtyeight() +
 image_type <- ".jpeg"
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 path <- paste0(getwd(), "//")
-website <- "c:\\Users\\borbath\\Documents\\GitHub\\eborbath.github.io\\_includes\\"
+website <- "/Users/eborbath/Documents/GitHub/eborbath.github.io/_includes/"
 
 dat <- read.csv(paste0(path, "ro_polls_2020.csv"))
 
@@ -212,7 +211,7 @@ p <- ggplot(long, aes(x=date, y=percent, color=parties)) +
 
 ggsave(plot=p,
        filename = paste0("overall", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 to_plot <- long %>% 
@@ -247,7 +246,7 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
 
 ggsave(plot=p,
        filename = paste0("dis_overall", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        scale=1.1,
        width = 7, height = 6, dpi=400)
   
@@ -278,7 +277,7 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
 
 ggsave(plot=p,
        filename = paste0("winners", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 
@@ -298,7 +297,7 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
   
 ggsave(plot=p,
        filename = paste0("dis_winners", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 grid <- with(to_plot, seq(min(percent, na.rm = TRUE)-sd(percent, na.rm = TRUE),
@@ -320,7 +319,7 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
 
 ggsave(plot=p,
        filename = paste0("dis_winners2", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 ## Small parties
@@ -334,7 +333,7 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
   geom_smooth(method="loess", se=FALSE) +
   geom_hline(yintercept = 5, linetype="dotted") +
   scale_color_manual("",breaks=c("Pro Romania", "PMP", "UDMR"),
-                     values = c("black", "#007BC8", "#2E8348")) +
+                     values = c("black", "#007BC8", "#2E8348", "#FCC224")) +
   geom_point(data=results[results$parties=="PRO",], aes(y=vote, x=date), 
              fill="black", alpha=1, shape=22, color="black", size=3) +
   geom_point(data=results[results$parties=="PMP",], aes(y=vote, x=date), 
@@ -352,7 +351,7 @@ p <- ggplot(to_plot, aes(x=date, y=percent, color=parties)) +
 
 ggsave(plot=p,
        filename = paste0("smaller", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 
@@ -377,7 +376,7 @@ p <- ggplot(to_plot, aes(x=percent, fill=parties)) +
 
 ggsave(plot=p,
        filename = paste0("dis_smaller", image_type),
-       path=paste0(path, "static\\"),
+       path="./static/",
        width = 8, height = 5, dpi=400)
 
 # table for the website
@@ -395,6 +394,10 @@ polls <- polls %>%
   select(where(~ !(all(is.na(.)) | all(. == ""))))
 
 display <- head(polls)
+display$ALDE <- NULL
+display$USR <- NULL
+display$PLUS <- NULL
+
 sink(paste0(website, 'recent_polls.html'))
 knitr::kable(display, format = "html")
 sink()

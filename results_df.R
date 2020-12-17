@@ -4,9 +4,34 @@ library(tidyr)
 library(stringr)
 library(lubridate)
 
-# County Councils results, from: https://prezenta.roaep.ro/locale27092020/romania-pv-final
+# Final results parliamentary elections - chamber of deputies
 
-path <- "c:\\Users\\borbath\\Documents\\GitHub\\ro_poll_parl_2020\\"
+url <- "https://en.wikipedia.org/wiki/2020_Romanian_legislative_election#Results"
+webpage <- read_html(url)
+tbls <- html_nodes(webpage, "table")
+df <- html_table(tbls, fill = T)[[7]]
+df <- df[, c(2, 4)]
+
+colnames(df) <- df[2, ]  
+
+results <- df %>% 
+  mutate(Party = case_when(grepl("National Liberal Party", Party) ~ "PNL",
+                           grepl("Social Democratic Party", Party) ~ "PSD",
+                           grepl("USR-PLUS", Party) ~ "USR.PLUS",
+                           grepl("People's Movement Party", Party) ~ "PMP",
+                           grepl("Hungarians in Romania", Party) ~ "UDMR",
+                           grepl("Alliance of Liberals and Democrats", Party) ~ "ALDE",
+                           grepl("PRO Romania", Party) ~ "PRO",
+                           grepl("Alliance for the Unity of Romanians", Party) ~ "AUR")) %>% 
+  filter(Party %in% c("PNL", "PSD", "USR.PLUS", "PMP", "UDMR", "ALDE", "PRO", "AUR")) %>% 
+  rename(vote=`%`) %>% 
+  mutate(vote=as.numeric(str_remove(vote, "%"))) %>% 
+  rename(parties = Party) %>% 
+  mutate(type="Parl. Election Chamber of Deputies")
+
+
+
+# County Councils results, from: https://prezenta.roaep.ro/locale27092020/romania-pv-final
 
 url <- "https://en.wikipedia.org/wiki/2020_Romanian_local_elections#Results"
 webpage <- read_html(url)
@@ -14,7 +39,7 @@ tbls <- html_nodes(webpage, "table")
 df <- html_table(tbls, fill = T)[[5]]
 df <- df[, c(2, 13)]
 
-results <- df %>% 
+df <- df %>% 
   mutate(Party = case_when(grepl("National Liberal Party", Party) ~ "PNL",
                            grepl("Social Democratic Party", Party) ~ "PSD",
                            grepl("USR-PLUS", Party) ~ "USR.PLUS",
@@ -27,6 +52,9 @@ results <- df %>%
   mutate(vote=as.numeric(str_remove(vote, "%"))) %>% 
   rename(parties = Party) %>% 
   mutate(type="Local Election County Councils")
+
+results <- rbind(results, df)
+rm(df)
 
 ## EP Elections, from Wikipedia
 
@@ -76,7 +104,8 @@ df <- df %>%
 results <- rbind(results, df)
 
 results <- results %>% 
-  mutate(date=case_when(type=="Local Election County Councils" ~ "2020-09-27",
+  mutate(date=case_when(type=="Parl. Election Chamber of Deputies" ~ "2020-12-06",
+                        type=="Local Election County Councils" ~ "2020-09-27",
                         type=="Local Election Mayors" ~ "2020-09-27",
                         type=="EP Election" ~ "2019-05-26",
                         type=="Pres. Election Ist Round" ~ "2019-11-10")) %>% 
